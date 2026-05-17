@@ -117,16 +117,38 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .ticker-card-text{font-family:var(--font-body);font-size:13px;font-weight:600;line-height:1.3;color:var(--fcb-white);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 
 /* === MATCH CENTER WITH ANIMATED RED LINE === */
-.match-center{background:var(--fcb-darker);position:relative;padding:48px 24px 40px;overflow:hidden}
+.match-center{
+  background:var(--fcb-darker);
+  position:relative;
+  padding:64px 24px 56px;
+  overflow:hidden;
+  isolation:isolate;
+}
+/* Cinematic background: blurred stadium scene */
 .match-center::before{
-  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  content:'';position:absolute;inset:0;
+  background-image:url('https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1600&q=70&auto=format&fit=crop');
+  background-size:cover;
+  background-position:center;
+  opacity:0.18;
+  filter:blur(2px) saturate(1.2);
+  z-index:-2;
+}
+/* Dark gradient overlay over the image */
+.match-center::after{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse at top, rgba(220,5,45,0.15) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(15,15,26,0.85) 0%, rgba(15,15,26,0.95) 60%, var(--fcb-darker) 100%);
+  z-index:-1;
+}
+/* Animated red top line — moved to a separate element */
+.match-redline{
+  position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,
-    transparent 0%,
-    rgba(220,5,45,0.1) 10%,
-    var(--fcb-red) 30%,
-    var(--fcb-red) 45%,
-    rgba(220,5,45,0.1) 60%,
-    transparent 100%
+    transparent 0%, rgba(220,5,45,0.1) 10%,
+    var(--fcb-red) 30%, var(--fcb-red) 45%,
+    rgba(220,5,45,0.1) 60%, transparent 100%
   );
   background-size:200% 100%;
   animation:redLineSweep 4s ease-in-out infinite;
@@ -135,7 +157,6 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   0%{background-position:200% 0}
   100%{background-position:-200% 0}
 }
-.match-center::after{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:250px;border-radius:50%;background:radial-gradient(ellipse,rgba(220,5,45,0.05) 0%,transparent 70%);pointer-events:none}
 
 .countdown-wrapper{max-width:1320px;margin:0 auto;position:relative;z-index:1}
 .countdown-label{font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--fcb-white);text-align:center;margin-bottom:6px}
@@ -169,11 +190,33 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   position:relative;
   overflow:hidden;
   transition:var(--transition);
+  isolation:isolate;
+}
+/* Background image layer behind the gradient */
+.cd-mini-bg{
+  position:absolute;inset:0;
+  background-size:cover;
+  background-position:center;
+  opacity:0.22;
+  filter:saturate(1.1);
+  z-index:-2;
+  transition:opacity .5s, transform .5s;
+}
+.cd-mini:hover .cd-mini-bg{opacity:0.32;transform:scale(1.05)}
+/* Diagonal accent gradient overlay */
+.cd-mini::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(115deg,
+    rgba(20,20,32,0.92) 0%,
+    rgba(20,20,32,0.7) 55%,
+    rgba(20,20,32,0.4) 100%);
+  z-index:-1;
 }
 .cd-mini::before{
   content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
   background:var(--accent,#E11D2C);
   box-shadow:0 0 12px var(--accent,#E11D2C);
+  z-index:1;
 }
 .cd-mini:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.15)}
 .cd-mini-ucl{--accent:#1565C0}
@@ -212,6 +255,225 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 @media(max-width:640px){
   .countdown-secondary{grid-template-columns:1fr}
   .cd-mini-title{font-size:13px}
+}
+
+/* ========================================================================
+   ESTRELLAS GALÁCTICAS — Asymmetric athletes showcase
+   ======================================================================== */
+.heroes-section{
+  position:relative;
+  padding:88px 24px 96px;
+  background:linear-gradient(180deg, #0A0510 0%, var(--fcb-darker) 50%, #0A0814 100%);
+  overflow:hidden;
+}
+.heroes-section::before{
+  content:'';position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 40% at 15% 10%, rgba(220,5,45,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 90% 90%, rgba(21,101,192,0.10) 0%, transparent 60%);
+  pointer-events:none;
+}
+/* Decorative giant outlined number */
+.heroes-section::after{
+  content:'XI';
+  position:absolute;
+  right:-30px;bottom:-80px;
+  font-family:var(--font-display);
+  font-size:clamp(280px, 32vw, 480px);
+  font-weight:700;
+  color:transparent;
+  -webkit-text-stroke:2px rgba(255,255,255,0.04);
+  line-height:0.85;
+  pointer-events:none;
+  z-index:0;
+}
+.heroes-inner{max-width:1320px;margin:0 auto;position:relative;z-index:1}
+.heroes-header{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  margin-bottom:48px;gap:24px;flex-wrap:wrap;
+}
+.heroes-title-block{flex:1;min-width:280px}
+.heroes-eyebrow{
+  display:inline-flex;align-items:center;gap:12px;
+  font-family:var(--font-display);
+  font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
+  color:var(--fcb-red);margin-bottom:14px;
+}
+.heroes-eyebrow::before{
+  content:'';width:28px;height:2px;background:var(--fcb-red);
+}
+.heroes-title{
+  font-family:var(--font-display);
+  font-size:clamp(34px, 4.5vw, 60px);
+  font-weight:700;line-height:0.95;
+  letter-spacing:-1.5px;
+  text-transform:uppercase;
+  color:white;
+}
+.heroes-title .accent{
+  color:var(--fcb-red);
+  font-style:italic;
+  font-weight:600;
+  display:inline-block;
+  transform:skewX(-8deg);
+}
+.heroes-sub{
+  font-size:15px;color:var(--fcb-gray);
+  margin-top:14px;max-width:520px;line-height:1.55;
+}
+.heroes-cta{
+  font-family:var(--font-display);
+  font-size:12px;font-weight:600;
+  letter-spacing:1.5px;text-transform:uppercase;
+  color:white;
+  padding:14px 24px;
+  border:1px solid rgba(255,255,255,0.18);
+  border-radius:999px;
+  display:inline-flex;align-items:center;gap:10px;
+  transition:var(--transition);
+  background:rgba(255,255,255,0.02);
+  white-space:nowrap;
+}
+.heroes-cta:hover{
+  background:var(--fcb-red);
+  border-color:var(--fcb-red);
+  transform:translateX(3px);
+}
+.heroes-cta svg{width:14px;height:14px;transition:transform var(--transition)}
+.heroes-cta:hover svg{transform:translateX(4px)}
+
+/* Asymmetric mosaic grid */
+.heroes-grid{
+  display:grid;
+  grid-template-columns:repeat(6,1fr);
+  grid-auto-rows:180px;
+  gap:14px;
+}
+.hero-card{
+  position:relative;
+  border-radius:14px;
+  overflow:hidden;
+  cursor:pointer;
+  background:#1a1a25;
+  transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s;
+  isolation:isolate;
+}
+.hero-card img{
+  position:absolute;inset:0;
+  width:100%;height:100%;object-fit:cover;
+  transition:transform 1.4s cubic-bezier(.2,.8,.2,1), filter .6s;
+  filter:saturate(0.9) contrast(1.08) brightness(0.95);
+}
+.hero-card:hover img{
+  transform:scale(1.08);
+  filter:saturate(1.2) contrast(1.12) brightness(1.05);
+}
+.hero-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(220,5,45,0.3);
+}
+.hero-card-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(to top,
+    rgba(8,8,16,0.95) 0%,
+    rgba(8,8,16,0.55) 45%,
+    transparent 75%
+  );
+  display:flex;flex-direction:column;justify-content:flex-end;
+  padding:22px 24px;
+  transition:background .5s;
+}
+.hero-card:hover .hero-card-overlay{
+  background:linear-gradient(to top,
+    rgba(8,8,16,0.97) 0%,
+    rgba(20,8,16,0.7) 45%,
+    rgba(220,5,45,0.18) 100%
+  );
+}
+.hero-card-number{
+  position:absolute;
+  top:18px;right:22px;
+  font-family:var(--font-display);
+  font-size:clamp(38px, 4.5vw, 64px);
+  font-weight:700;line-height:1;
+  color:rgba(255,255,255,0.95);
+  text-shadow:0 4px 18px rgba(0,0,0,0.7);
+  z-index:2;
+  letter-spacing:-2px;
+}
+.hero-card-role{
+  font-family:var(--font-display);
+  font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--fcb-red);
+  margin-bottom:6px;
+  display:flex;align-items:center;gap:8px;
+}
+.hero-card-role::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right, rgba(220,5,45,0.5), transparent);
+  max-width:40px;
+}
+.hero-card-name{
+  font-family:var(--font-display);
+  font-size:clamp(18px, 2.2vw, 28px);
+  font-weight:700;
+  line-height:0.95;
+  letter-spacing:0.5px;
+  text-transform:uppercase;
+  color:white;
+  text-shadow:0 2px 16px rgba(0,0,0,0.6);
+}
+.hero-card-quote{
+  font-family:var(--font-body);
+  font-size:13px;
+  color:rgba(255,255,255,0.88);
+  margin-top:10px;
+  opacity:0;
+  max-height:0;
+  overflow:hidden;
+  transition:opacity .45s ease, max-height .45s ease;
+  font-style:italic;
+  line-height:1.45;
+  border-left:2px solid var(--fcb-red);
+  padding-left:10px;
+}
+.hero-card:hover .hero-card-quote{
+  opacity:1;
+  max-height:90px;
+}
+.hero-card-stats{
+  display:flex;gap:14px;
+  margin-top:10px;
+  font-family:var(--font-display);
+}
+.hero-card-stat{
+  display:flex;flex-direction:column;
+  font-size:11px;color:rgba(255,255,255,0.6);
+  letter-spacing:1px;text-transform:uppercase;
+}
+.hero-card-stat strong{
+  font-size:18px;font-weight:700;color:white;
+  line-height:1;margin-bottom:2px;
+}
+
+/* Mosaic layout — desktop */
+.hero-card:nth-child(1){grid-column:span 3;grid-row:span 2}  /* hero captain */
+.hero-card:nth-child(2){grid-column:span 3;grid-row:span 1}  /* wide top right */
+.hero-card:nth-child(3){grid-column:span 2;grid-row:span 1}
+.hero-card:nth-child(4){grid-column:span 1;grid-row:span 1}
+.hero-card:nth-child(5){grid-column:span 2;grid-row:span 2}  /* tall right */
+.hero-card:nth-child(6){grid-column:span 4;grid-row:span 1}  /* wide bottom */
+
+@media(max-width:1024px){
+  .heroes-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:180px}
+  .hero-card:nth-child(n){grid-column:span 2;grid-row:span 1}
+  .hero-card:nth-child(1){grid-column:span 4;grid-row:span 2}
+}
+@media(max-width:640px){
+  .heroes-section{padding:64px 20px 72px}
+  .heroes-grid{grid-template-columns:1fr;grid-auto-rows:240px}
+  .hero-card:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .heroes-header{flex-direction:column;align-items:flex-start}
 }
 
 /* === MATCH CAROUSEL === */
@@ -585,6 +847,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 
 <!-- MATCH CENTER: COUNTDOWN + CAROUSEL -->
 <section class="match-center">
+  <div class="match-redline" aria-hidden="true"></div>
   <div class="countdown-wrapper">
     <div class="countdown-label">Fiesta Familiar · Ingeniería Civil UNSA</div>
     <div class="countdown-sublabel" id="countdownEvent">14 de junio · Arequipa · Universidad Nacional de San Agustín</div>
@@ -604,6 +867,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
     <!-- Secondary countdowns: UCL Final + World Cup -->
     <div class="countdown-secondary">
       <div class="cd-mini cd-mini-ucl" role="timer" aria-live="polite" aria-label="Cuenta atrás a la Final de la Champions League">
+        <div class="cd-mini-bg" style="background-image:url('https://images.unsplash.com/photo-1560003991-545650ee5f07?w=600&q=70&auto=format&fit=crop')" aria-hidden="true"></div>
         <div class="cd-mini-icon" aria-hidden="true">🏆</div>
         <div class="cd-mini-body">
           <div class="cd-mini-label">Final UCL · 30 Mayo</div>
@@ -620,6 +884,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         </div>
       </div>
       <div class="cd-mini cd-mini-wc" role="timer" aria-live="polite" aria-label="Cuenta atrás al Mundial FIFA 2026">
+        <div class="cd-mini-bg" style="background-image:url('https://images.unsplash.com/photo-1522778034537-20a2486be803?w=600&q=70&auto=format&fit=crop')" aria-hidden="true"></div>
         <div class="cd-mini-icon" aria-hidden="true">🌎</div>
         <div class="cd-mini-body">
           <div class="cd-mini-label">Mundial FIFA · 11 Junio</div>
@@ -724,6 +989,101 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         <path d="M30 3 L56 12 L56 36 C56 52 45 65 30 71 C15 65 4 52 4 36 L4 12 Z" stroke="#FFD700" stroke-width="2.5" fill="rgba(255,215,0,0.08)"/>
         <polygon points="30,20 33.8,31.2 45.6,31.2 36.1,38.4 39.7,49.6 30,42.8 20.3,49.6 23.9,38.4 14.4,31.2 26.2,31.2" fill="#FFD700"/>
       </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ESTRELLAS GALÁCTICAS -->
+<section class="heroes-section">
+  <div class="heroes-inner">
+    <div class="heroes-header">
+      <div class="heroes-title-block">
+        <div class="heroes-eyebrow">Nuestras estrellas · Temporada 25/26</div>
+        <h2 class="heroes-title">Quienes hacen <span class="accent">Galáctico</span> al club</h2>
+        <p class="heroes-sub">Once corazones, una sola galaxia. Los rostros, el sudor y la emoción que mueven al estadio cada fin de semana — y que ahora viajan al Mundial con sus selecciones.</p>
+      </div>
+      <a href="#" class="heroes-cta">
+        Ver plantilla completa
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+    </div>
+
+    <div class="heroes-grid">
+
+      <!-- 1 · El Capitán (hero, large) -->
+      <article class="hero-card">
+        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80&auto=format&fit=crop" alt="El capitán celebrando con la afición" loading="lazy">
+        <div class="hero-card-number">10</div>
+        <div class="hero-card-overlay">
+          <div class="hero-card-role">El Capitán · Mediocentro</div>
+          <div class="hero-card-name">Lucas Vega</div>
+          <p class="hero-card-quote">"Vestir este escudo no se explica. Se siente cuando pisas el césped y 75.000 corazones rugen."</p>
+          <div class="hero-card-stats">
+            <div class="hero-card-stat"><strong>312</strong>Partidos</div>
+            <div class="hero-card-stat"><strong>87</strong>Goles</div>
+            <div class="hero-card-stat"><strong>14</strong>Títulos</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 2 · La estrella (wide) -->
+      <article class="hero-card">
+        <img src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1200&q=80&auto=format&fit=crop" alt="Delantero celebrando un gol con bandera" loading="lazy">
+        <div class="hero-card-number">9</div>
+        <div class="hero-card-overlay">
+          <div class="hero-card-role">La Estrella · Delantero</div>
+          <div class="hero-card-name">Mateo Cruz</div>
+          <p class="hero-card-quote">"Cada gol es un grito de orgullo. El Mundial es el sueño."</p>
+        </div>
+      </article>
+
+      <!-- 3 · El muro (goalkeeper) -->
+      <article class="hero-card">
+        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=900&q=80&auto=format&fit=crop" alt="Portero estirándose para una atajada" loading="lazy">
+        <div class="hero-card-number">1</div>
+        <div class="hero-card-overlay">
+          <div class="hero-card-role">El Muro · Portero</div>
+          <div class="hero-card-name">Iván Soler</div>
+          <p class="hero-card-quote">"Mi área es mi casa. Aquí no entra nadie."</p>
+        </div>
+      </article>
+
+      <!-- 4 · La joven promesa (small) -->
+      <article class="hero-card">
+        <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=600&q=80&auto=format&fit=crop" alt="Joven jugador concentrado" loading="lazy">
+        <div class="hero-card-number">23</div>
+        <div class="hero-card-overlay">
+          <div class="hero-card-role">Promesa</div>
+          <div class="hero-card-name">Diego Núñez</div>
+        </div>
+      </article>
+
+      <!-- 5 · La revelación (tall) -->
+      <article class="hero-card">
+        <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=900&q=80&auto=format&fit=crop" alt="Jugador saltando en acción" loading="lazy">
+        <div class="hero-card-number">7</div>
+        <div class="hero-card-overlay">
+          <div class="hero-card-role">Revelación · Extremo</div>
+          <div class="hero-card-name">Adrián Mora</div>
+          <p class="hero-card-quote">"Me dijeron que era muy pequeño para esto. Hoy juego un Mundial."</p>
+          <div class="hero-card-stats">
+            <div class="hero-card-stat"><strong>21</strong>Goles</div>
+            <div class="hero-card-stat"><strong>15</strong>Asistencias</div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 · La leyenda (wide bottom) -->
+      <article class="hero-card">
+        <img src="https://images.unsplash.com/photo-1667983090922-3a996b026a26?w=1200&q=80&auto=format&fit=crop" alt="Leyenda del club con trofeos" loading="lazy">
+        <div class="hero-card-number">5</div>
+        <div class="hero-card-overlay">
+          <div class="hero-card-role">Leyenda · Defensa Central</div>
+          <div class="hero-card-name">Sergio Ramírez</div>
+          <p class="hero-card-quote">"Una vida en rojo. Y aún queda otra Champions por levantar."</p>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
