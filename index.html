@@ -485,9 +485,40 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .match-card.next::before{content:'PRÓXIMO PARTIDO';position:absolute;top:-1px;left:50%;transform:translateX(-50%);font-family:var(--font-display);font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:rgba(60,100,220,0.85);color:white;padding:3px 14px;border-radius:0 0 6px 6px;z-index:2}
 .match-card-top{font-family:var(--font-display);font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:1.5px;color:var(--fcb-gray);text-align:center;padding:18px 16px 8px}
 .match-card-body{display:flex;align-items:center;justify-content:center;gap:16px;padding:8px 16px 18px}
-.match-team{display:flex;flex-direction:column;align-items:center;gap:6px}
-.match-team-logo{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;overflow:hidden}
-.match-team-logo img{width:100%;height:100%;object-fit:contain}
+.match-team{display:flex;flex-direction:column;align-items:center;gap:8px}
+.match-team-logo{
+  width:52px;height:52px;
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;
+  background:rgba(255,255,255,0.04);
+  padding:4px;
+  transition:transform var(--transition);
+}
+.match-card:hover .match-team-logo{transform:scale(1.08)}
+.match-team-logo svg{width:100%;height:100%;display:block}
+.match-team-logo img{width:100%;height:100%;object-fit:contain;display:block}
+.match-team-logo.match-flag{
+  background:#fff;
+  padding:0;
+  border:2px solid rgba(255,255,255,0.18);
+  overflow:hidden;
+}
+.match-team-logo.match-flag svg,
+.match-team-logo.match-flag img{
+  width:100%;height:100%;
+  object-fit:cover;
+  border-radius:50%;
+}
+.match-team-abbr{
+  font-family:var(--font-display);
+  font-size:11px;
+  font-weight:600;
+  letter-spacing:1.2px;
+  color:var(--fcb-gray);
+  text-transform:uppercase;
+  line-height:1;
+}
 .match-score{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--fcb-white);letter-spacing:2px;display:flex;flex-direction:column;align-items:center}
 .match-score-sub{font-size:12px;font-weight:400;color:var(--fcb-gray);letter-spacing:0}
 .match-date{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--fcb-white);display:flex;flex-direction:column;align-items:center;text-align:center}
@@ -904,42 +935,127 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
     <!-- Match Carousel -->
     <div class="match-carousel-wrap">
       <div class="match-carousel" id="matchCarousel">
-        <!-- Past: FCB 4:0 SCF -->
+
+        <!-- ====== Match 1: Past · Galácticos 4-0 Rivera FC ====== -->
         <div class="match-card">
           <div class="match-card-top">Liga · J37</div>
           <div class="match-card-body">
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="GFC"></div></div>
+            <div class="match-team">
+              <div class="match-team-logo" aria-label="Galácticos FC">
+                <svg viewBox="0 0 60 70" fill="none" aria-hidden="true">
+                  <path d="M30 2 C40 2 50 5 56 10 L56 32 C56 50 45 64 30 68 C15 64 4 50 4 32 L4 10 C10 5 20 2 30 2 Z" fill="#0A1F44"/>
+                  <path d="M30 6 C38 6 46 8 52 12 L52 31 C52 47 42 59 30 63 C18 59 8 47 8 31 L8 12 C14 8 22 6 30 6 Z" fill="#E11D2C"/>
+                  <polygon points="30,17 33.5,28 45,28 35.5,35 39,46 30,39.5 21,46 24.5,35 15,28 26.5,28" fill="#FFD400"/>
+                </svg>
+              </div>
+              <span class="match-team-abbr">GFC</span>
+            </div>
             <div class="match-score">4 : 0<span class="match-score-sub">(2:0)</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/freiburg.png" alt="RIV"></div></div>
+            <div class="match-team">
+              <div class="match-team-logo" aria-label="Rivera FC">
+                <svg viewBox="0 0 60 70" fill="none" aria-hidden="true">
+                  <path d="M30 2 C40 2 50 5 56 10 L56 32 C56 50 45 64 30 68 C15 64 4 50 4 32 L4 10 C10 5 20 2 30 2 Z" fill="#0F4D2C"/>
+                  <path d="M30 7 C38 7 46 9 52 13 L52 31 C52 47 42 59 30 63 C18 59 8 47 8 31 L8 13 C14 9 22 7 30 7 Z" fill="#FFFFFF"/>
+                  <rect x="14" y="32" width="32" height="4" fill="#0F4D2C"/>
+                  <text x="30" y="28" font-family="Oswald, sans-serif" font-size="14" font-weight="700" text-anchor="middle" fill="#0F4D2C">RF</text>
+                  <text x="30" y="48" font-family="Oswald, sans-serif" font-size="6" font-weight="600" letter-spacing="0.5" text-anchor="middle" fill="#0F4D2C">RIVERA</text>
+                </svg>
+              </div>
+              <span class="match-team-abbr">RIV</span>
+            </div>
           </div>
         </div>
-        <!-- Next: Final de Liga -->
+
+        <!-- ====== Match 2: Next · Galácticos vs Oriental ====== -->
         <div class="match-card next">
           <div class="match-card-top">Liga · Última Jornada</div>
           <div class="match-card-body">
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="GFC"></div></div>
+            <div class="match-team">
+              <div class="match-team-logo" aria-label="Galácticos FC">
+                <svg viewBox="0 0 60 70" fill="none" aria-hidden="true">
+                  <path d="M30 2 C40 2 50 5 56 10 L56 32 C56 50 45 64 30 68 C15 64 4 50 4 32 L4 10 C10 5 20 2 30 2 Z" fill="#0A1F44"/>
+                  <path d="M30 6 C38 6 46 8 52 12 L52 31 C52 47 42 59 30 63 C18 59 8 47 8 31 L8 12 C14 8 22 6 30 6 Z" fill="#E11D2C"/>
+                  <polygon points="30,17 33.5,28 45,28 35.5,35 39,46 30,39.5 21,46 24.5,35 15,28 26.5,28" fill="#FFD400"/>
+                </svg>
+              </div>
+              <span class="match-team-abbr">GFC</span>
+            </div>
             <div class="match-date">sáb 23/05<span>15:30 GMT-5</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/schalke.png" alt="ORI"></div></div>
+            <div class="match-team">
+              <div class="match-team-logo" aria-label="Oriental Club">
+                <svg viewBox="0 0 60 70" fill="none" aria-hidden="true">
+                  <path d="M30 2 C40 2 50 5 56 10 L56 32 C56 50 45 64 30 68 C15 64 4 50 4 32 L4 10 C10 5 20 2 30 2 Z" fill="#1565C0"/>
+                  <path d="M30 7 C38 7 46 9 52 13 L52 31 C52 47 42 59 30 63 C18 59 8 47 8 31 L8 13 C14 9 22 7 30 7 Z" fill="#FFD400"/>
+                  <circle cx="30" cy="32" r="9" fill="#1565C0"/>
+                  <text x="30" y="36" font-family="Oswald, sans-serif" font-size="11" font-weight="700" text-anchor="middle" fill="#FFD400">OR</text>
+                  <text x="30" y="51" font-family="Oswald, sans-serif" font-size="6" font-weight="600" letter-spacing="0.5" text-anchor="middle" fill="#1565C0">ORIENTAL</text>
+                </svg>
+              </div>
+              <span class="match-team-abbr">ORI</span>
+            </div>
           </div>
         </div>
-        <!-- Final UCL -->
+
+        <!-- ====== Match 3: UCL Final · Galácticos vs Atlético Imperial ====== -->
         <div class="match-card">
           <div class="match-card-top">Final · Liga de Campeones</div>
           <div class="match-card-body">
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/international/real_madrid.png" alt="RMA"></div></div>
-            <div class="match-date">sáb 30/05<span>14:00 GMT-5</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="GFC"></div></div>
+            <div class="match-team">
+              <div class="match-team-logo" aria-label="Atlético Imperial">
+                <svg viewBox="0 0 60 70" fill="none" aria-hidden="true">
+                  <path d="M30 2 C40 2 50 5 56 10 L56 32 C56 50 45 64 30 68 C15 64 4 50 4 32 L4 10 C10 5 20 2 30 2 Z" fill="#FFFFFF"/>
+                  <path d="M4 10 L4 32 C4 38 5.5 43.5 8 48 L52 48 C54.5 43.5 56 38 56 32 L56 10 C50 5 40 2 30 2 C20 2 10 5 4 10 Z" fill="#D32F2F"/>
+                  <path d="M30 12 L36 22 L48 24 L39 32 L41 44 L30 38 L19 44 L21 32 L12 24 L24 22 Z" fill="#FFFFFF"/>
+                  <text x="30" y="60" font-family="Oswald, sans-serif" font-size="6" font-weight="700" letter-spacing="0.8" text-anchor="middle" fill="#D32F2F">IMPERIAL</text>
+                </svg>
+              </div>
+              <span class="match-team-abbr">IMP</span>
+            </div>
+            <div class="match-date">sáb 30/05<span>13:00 GMT-5</span></div>
+            <div class="match-team">
+              <div class="match-team-logo" aria-label="Galácticos FC">
+                <svg viewBox="0 0 60 70" fill="none" aria-hidden="true">
+                  <path d="M30 2 C40 2 50 5 56 10 L56 32 C56 50 45 64 30 68 C15 64 4 50 4 32 L4 10 C10 5 20 2 30 2 Z" fill="#0A1F44"/>
+                  <path d="M30 6 C38 6 46 8 52 12 L52 31 C52 47 42 59 30 63 C18 59 8 47 8 31 L8 12 C14 8 22 6 30 6 Z" fill="#E11D2C"/>
+                  <polygon points="30,17 33.5,28 45,28 35.5,35 39,46 30,39.5 21,46 24.5,35 15,28 26.5,28" fill="#FFD400"/>
+                </svg>
+              </div>
+              <span class="match-team-abbr">GFC</span>
+            </div>
           </div>
         </div>
-        <!-- Mundial debut -->
+
+        <!-- ====== Match 4: Mundial · Alemania vs Curazao ====== -->
         <div class="match-card">
-          <div class="match-card-top">Mundial FIFA 2026</div>
+          <div class="match-card-top">Mundial FIFA 2026 · Grupo E</div>
           <div class="match-card-body">
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/dortmund.png" alt="DEU"></div></div>
+            <div class="match-team">
+              <div class="match-team-logo match-flag" aria-label="Alemania">
+                <!-- Bandera de Alemania -->
+                <svg viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <rect width="60" height="20" fill="#000000"/>
+                  <rect y="20" width="60" height="20" fill="#DD0000"/>
+                  <rect y="40" width="60" height="20" fill="#FFCE00"/>
+                </svg>
+              </div>
+              <span class="match-team-abbr">ALE</span>
+            </div>
             <div class="match-date">dom 14/06<span>12:00 GMT-5</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/freiburg.png" alt="CUW"></div></div>
+            <div class="match-team">
+              <div class="match-team-logo match-flag" aria-label="Curazao">
+                <!-- Bandera de Curazao -->
+                <svg viewBox="0 0 60 60" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <rect width="60" height="60" fill="#002B7F"/>
+                  <rect y="40" width="60" height="6" fill="#F9E814"/>
+                  <polygon points="14,14 15.4,18 19.6,18 16.2,20.6 17.5,24.6 14,22.2 10.5,24.6 11.8,20.6 8.4,18 12.6,18" fill="#FFFFFF"/>
+                  <polygon points="24,22 25,25 28,25 25.5,27 26.5,30 24,28.2 21.5,30 22.5,27 20,25 23,25" fill="#FFFFFF"/>
+                </svg>
+              </div>
+              <span class="match-team-abbr">CUW</span>
+            </div>
           </div>
         </div>
+
       </div>
       <div class="match-nav">
         <button class="match-nav-arrow" onclick="scrollMatches(-1)" aria-label="Anterior">&#8249;</button>
