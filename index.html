@@ -258,7 +258,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 }
 
 /* ========================================================================
-   ESTRELLAS GALÁCTICAS — Asymmetric athletes showcase
+   ESTRELLAS DEL MUNDIAL — Editorial magazine-cover style
    ======================================================================== */
 .heroes-section{
   position:relative;
@@ -273,19 +273,19 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
     radial-gradient(ellipse 50% 50% at 90% 90%, rgba(21,101,192,0.10) 0%, transparent 60%);
   pointer-events:none;
 }
-/* Decorative giant outlined number */
 .heroes-section::after{
-  content:'XI';
+  content:'2026';
   position:absolute;
-  right:-30px;bottom:-80px;
+  right:-30px;bottom:-100px;
   font-family:var(--font-display);
-  font-size:clamp(280px, 32vw, 480px);
+  font-size:clamp(280px, 32vw, 520px);
   font-weight:700;
   color:transparent;
   -webkit-text-stroke:2px rgba(255,255,255,0.04);
   line-height:0.85;
   pointer-events:none;
   z-index:0;
+  letter-spacing:-8px;
 }
 .heroes-inner{max-width:1320px;margin:0 auto;position:relative;z-index:1}
 .heroes-header{
@@ -297,10 +297,10 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   display:inline-flex;align-items:center;gap:12px;
   font-family:var(--font-display);
   font-size:11px;font-weight:600;letter-spacing:3px;text-transform:uppercase;
-  color:var(--fcb-red);margin-bottom:14px;
+  color:#FFD400;margin-bottom:14px;
 }
 .heroes-eyebrow::before{
-  content:'';width:28px;height:2px;background:var(--fcb-red);
+  content:'';width:28px;height:2px;background:#FFD400;
 }
 .heroes-title{
   font-family:var(--font-display);
@@ -319,7 +319,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 }
 .heroes-sub{
   font-size:15px;color:var(--fcb-gray);
-  margin-top:14px;max-width:520px;line-height:1.55;
+  margin-top:14px;max-width:560px;line-height:1.55;
 }
 .heroes-cta{
   font-family:var(--font-display);
@@ -335,145 +335,154 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   white-space:nowrap;
 }
 .heroes-cta:hover{
-  background:var(--fcb-red);
-  border-color:var(--fcb-red);
+  background:#FFD400;
+  border-color:#FFD400;
+  color:#0A1F44;
   transform:translateX(3px);
 }
 .heroes-cta svg{width:14px;height:14px;transition:transform var(--transition)}
 .heroes-cta:hover svg{transform:translateX(4px)}
 
-/* Asymmetric mosaic grid */
+/* Magazine-style asymmetric mosaic */
 .heroes-grid{
   display:grid;
   grid-template-columns:repeat(6,1fr);
-  grid-auto-rows:180px;
+  grid-auto-rows:200px;
   gap:14px;
 }
-.hero-card{
+.star-card{
   position:relative;
   border-radius:14px;
   overflow:hidden;
   cursor:pointer;
-  background:#1a1a25;
+  background:#0a0a14;
   transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s;
   isolation:isolate;
 }
-.hero-card img{
+/* Action photo background (silhouette/motion) */
+.star-card-photo{
   position:absolute;inset:0;
-  width:100%;height:100%;object-fit:cover;
+  background-size:cover;background-position:center;
+  filter:saturate(0.7) contrast(1.15) brightness(0.55) grayscale(0.15);
   transition:transform 1.4s cubic-bezier(.2,.8,.2,1), filter .6s;
-  filter:saturate(0.9) contrast(1.08) brightness(0.95);
+  z-index:0;
 }
-.hero-card:hover img{
+.star-card:hover .star-card-photo{
   transform:scale(1.08);
-  filter:saturate(1.2) contrast(1.12) brightness(1.05);
+  filter:saturate(1.15) contrast(1.2) brightness(0.7) grayscale(0);
 }
-.hero-card:hover{
-  transform:translateY(-6px);
-  box-shadow:0 20px 50px rgba(0,0,0,0.5), 0 0 0 1px rgba(220,5,45,0.3);
-}
-.hero-card-overlay{
+/* Cinematic dark gradient overlay */
+.star-card-overlay{
   position:absolute;inset:0;
-  background:linear-gradient(to top,
-    rgba(8,8,16,0.95) 0%,
-    rgba(8,8,16,0.55) 45%,
-    transparent 75%
-  );
-  display:flex;flex-direction:column;justify-content:flex-end;
-  padding:22px 24px;
-  transition:background .5s;
+  background:linear-gradient(165deg,
+    rgba(10,10,20,0.45) 0%,
+    rgba(10,10,20,0.7) 45%,
+    rgba(10,10,20,0.95) 100%);
+  z-index:1;
 }
-.hero-card:hover .hero-card-overlay{
-  background:linear-gradient(to top,
-    rgba(8,8,16,0.97) 0%,
-    rgba(20,8,16,0.7) 45%,
-    rgba(220,5,45,0.18) 100%
-  );
-}
-.hero-card-number{
+/* HUGE typographic surname in background — magazine cover treatment */
+.star-card-typo{
   position:absolute;
-  top:18px;right:22px;
+  left:-4px;bottom:-10px;
   font-family:var(--font-display);
-  font-size:clamp(38px, 4.5vw, 64px);
-  font-weight:700;line-height:1;
-  color:rgba(255,255,255,0.95);
-  text-shadow:0 4px 18px rgba(0,0,0,0.7);
-  z-index:2;
-  letter-spacing:-2px;
-}
-.hero-card-role{
-  font-family:var(--font-display);
-  font-size:10px;font-weight:600;letter-spacing:2.5px;text-transform:uppercase;
-  color:var(--fcb-red);
-  margin-bottom:6px;
-  display:flex;align-items:center;gap:8px;
-}
-.hero-card-role::after{
-  content:'';flex:1;height:1px;
-  background:linear-gradient(to right, rgba(220,5,45,0.5), transparent);
-  max-width:40px;
-}
-.hero-card-name{
-  font-family:var(--font-display);
-  font-size:clamp(18px, 2.2vw, 28px);
   font-weight:700;
-  line-height:0.95;
-  letter-spacing:0.5px;
+  font-size:clamp(48px, 8vw, 130px);
+  line-height:0.82;
+  letter-spacing:-3px;
+  color:transparent;
+  -webkit-text-stroke:1.5px rgba(255,255,255,0.15);
   text-transform:uppercase;
+  z-index:2;
+  pointer-events:none;
+  white-space:nowrap;
+  transition:color .6s, -webkit-text-stroke-color .6s;
+}
+.star-card:hover .star-card-typo{
+  color:rgba(255,255,255,0.05);
+  -webkit-text-stroke-color:rgba(255,212,0,0.35);
+}
+/* Foreground content */
+.star-card-content{
+  position:relative;z-index:3;
+  padding:22px 24px;
+  height:100%;
+  display:flex;flex-direction:column;
+  justify-content:space-between;
+}
+.star-card-top{
+  display:flex;align-items:center;justify-content:space-between;
+  gap:10px;
+}
+.star-card-edition{
+  font-family:var(--font-display);
+  font-size:9px;font-weight:600;
+  letter-spacing:2.5px;text-transform:uppercase;
+  color:rgba(255,255,255,0.4);
+}
+.star-card-flag{
+  width:34px;height:34px;
+  border-radius:50%;
+  overflow:hidden;
+  border:2px solid rgba(255,255,255,0.25);
+  flex-shrink:0;
+  box-shadow:0 4px 12px rgba(0,0,0,0.4);
+}
+.star-card-flag svg{width:100%;height:100%;display:block}
+.star-card-bottom{position:relative}
+.star-card-tagline{
+  font-family:var(--font-body);
+  font-style:italic;
+  font-size:13px;
+  color:#FFD400;
+  margin-bottom:6px;
+  letter-spacing:0.3px;
+}
+.star-card-name{
+  font-family:var(--font-display);
+  font-size:clamp(20px, 2.5vw, 32px);
+  font-weight:700;
+  text-transform:uppercase;
+  letter-spacing:-0.5px;
+  line-height:0.9;
   color:white;
   text-shadow:0 2px 16px rgba(0,0,0,0.6);
 }
-.hero-card-quote{
-  font-family:var(--font-body);
-  font-size:13px;
-  color:rgba(255,255,255,0.88);
-  margin-top:10px;
-  opacity:0;
-  max-height:0;
-  overflow:hidden;
-  transition:opacity .45s ease, max-height .45s ease;
-  font-style:italic;
-  line-height:1.45;
-  border-left:2px solid var(--fcb-red);
-  padding-left:10px;
-}
-.hero-card:hover .hero-card-quote{
-  opacity:1;
-  max-height:90px;
-}
-.hero-card-stats{
-  display:flex;gap:14px;
-  margin-top:10px;
+.star-card-meta{
+  display:flex;align-items:center;gap:8px;
+  margin-top:8px;
   font-family:var(--font-display);
+  font-size:10px;font-weight:500;letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:rgba(255,255,255,0.55);
 }
-.hero-card-stat{
-  display:flex;flex-direction:column;
-  font-size:11px;color:rgba(255,255,255,0.6);
-  letter-spacing:1px;text-transform:uppercase;
+.star-card-meta-dot{
+  width:4px;height:4px;border-radius:50%;
+  background:var(--fcb-red);
 }
-.hero-card-stat strong{
-  font-size:18px;font-weight:700;color:white;
-  line-height:1;margin-bottom:2px;
+.star-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,212,0,0.25);
 }
 
 /* Mosaic layout — desktop */
-.hero-card:nth-child(1){grid-column:span 3;grid-row:span 2}  /* hero captain */
-.hero-card:nth-child(2){grid-column:span 3;grid-row:span 1}  /* wide top right */
-.hero-card:nth-child(3){grid-column:span 2;grid-row:span 1}
-.hero-card:nth-child(4){grid-column:span 1;grid-row:span 1}
-.hero-card:nth-child(5){grid-column:span 2;grid-row:span 2}  /* tall right */
-.hero-card:nth-child(6){grid-column:span 4;grid-row:span 1}  /* wide bottom */
+.star-card:nth-child(1){grid-column:span 3;grid-row:span 2}  /* Messi hero */
+.star-card:nth-child(2){grid-column:span 3;grid-row:span 1}  /* Cristiano wide */
+.star-card:nth-child(3){grid-column:span 2;grid-row:span 1}  /* Mbappé */
+.star-card:nth-child(4){grid-column:span 1;grid-row:span 1}  /* Yamal compact */
+.star-card:nth-child(5){grid-column:span 2;grid-row:span 2}  /* Neymar tall */
+.star-card:nth-child(6){grid-column:span 4;grid-row:span 1}  /* Dembélé wide */
 
 @media(max-width:1024px){
   .heroes-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:180px}
-  .hero-card:nth-child(n){grid-column:span 2;grid-row:span 1}
-  .hero-card:nth-child(1){grid-column:span 4;grid-row:span 2}
+  .star-card:nth-child(n){grid-column:span 2;grid-row:span 1}
+  .star-card:nth-child(1){grid-column:span 4;grid-row:span 2}
 }
 @media(max-width:640px){
   .heroes-section{padding:64px 20px 72px}
   .heroes-grid{grid-template-columns:1fr;grid-auto-rows:240px}
-  .hero-card:nth-child(n){grid-column:span 1;grid-row:span 1}
+  .star-card:nth-child(n){grid-column:span 1;grid-row:span 1}
   .heroes-header{flex-direction:column;align-items:flex-start}
+  .star-card-typo{font-size:56px}
 }
 
 /* === MATCH CAROUSEL === */
@@ -1109,94 +1118,174 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   </div>
 </section>
 
-<!-- ESTRELLAS GALÁCTICAS -->
+<!-- ESTRELLAS DEL MUNDIAL 2026 -->
 <section class="heroes-section">
   <div class="heroes-inner">
     <div class="heroes-header">
       <div class="heroes-title-block">
-        <div class="heroes-eyebrow">Nuestras estrellas · Temporada 25/26</div>
-        <h2 class="heroes-title">Quienes hacen <span class="accent">Galáctico</span> al club</h2>
-        <p class="heroes-sub">Once corazones, una sola galaxia. Los rostros, el sudor y la emoción que mueven al estadio cada fin de semana — y que ahora viajan al Mundial con sus selecciones.</p>
+        <div class="heroes-eyebrow">Edición especial · Mundial FIFA 2026</div>
+        <h2 class="heroes-title">Las estrellas que harán <span class="accent">historia</span></h2>
+        <p class="heroes-sub">Cuando la luz del Azteca, el MetLife y el SoFi se encienda, ellos serán los nombres en la boca del planeta. Una selección editorial de las figuras a seguir en USA · México · Canadá 2026.</p>
       </div>
       <a href="#" class="heroes-cta">
-        Ver plantilla completa
+        Ver guía del Mundial
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
       </a>
     </div>
 
     <div class="heroes-grid">
 
-      <!-- 1 · El Capitán (hero, large) -->
-      <article class="hero-card">
-        <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=80&auto=format&fit=crop" alt="El capitán celebrando con la afición" loading="lazy">
-        <div class="hero-card-number">10</div>
-        <div class="hero-card-overlay">
-          <div class="hero-card-role">El Capitán · Mediocentro</div>
-          <div class="hero-card-name">Lucas Vega</div>
-          <p class="hero-card-quote">"Vestir este escudo no se explica. Se siente cuando pisas el césped y 75.000 corazones rugen."</p>
-          <div class="hero-card-stats">
-            <div class="hero-card-stat"><strong>312</strong>Partidos</div>
-            <div class="hero-card-stat"><strong>87</strong>Goles</div>
-            <div class="hero-card-stat"><strong>14</strong>Títulos</div>
+      <!-- 1 · MESSI (hero, large) -->
+      <article class="star-card">
+        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1200&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">MESSI</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Portada · Edición 01</span>
+            <!-- Bandera Argentina -->
+            <div class="star-card-flag" aria-label="Argentina">
+              <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="12" fill="#74ACDF"/>
+                <rect y="12" width="60" height="12" fill="#FFFFFF"/>
+                <rect y="24" width="60" height="12" fill="#74ACDF"/>
+                <circle cx="30" cy="18" r="3.5" fill="#F6B40E"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"El último baile del 10"</p>
+            <h3 class="star-card-name">Lionel Messi</h3>
+            <div class="star-card-meta">
+              <span>Argentina</span><span class="star-card-meta-dot"></span>
+              <span>Inter Miami</span><span class="star-card-meta-dot"></span>
+              <span>Campeón 2022</span>
+            </div>
           </div>
         </div>
       </article>
 
-      <!-- 2 · La estrella (wide) -->
-      <article class="hero-card">
-        <img src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1200&q=80&auto=format&fit=crop" alt="Delantero celebrando un gol con bandera" loading="lazy">
-        <div class="hero-card-number">9</div>
-        <div class="hero-card-overlay">
-          <div class="hero-card-role">La Estrella · Delantero</div>
-          <div class="hero-card-name">Mateo Cruz</div>
-          <p class="hero-card-quote">"Cada gol es un grito de orgullo. El Mundial es el sueño."</p>
-        </div>
-      </article>
-
-      <!-- 3 · El muro (goalkeeper) -->
-      <article class="hero-card">
-        <img src="https://images.unsplash.com/photo-1579952363873-27f3bade9f55?w=900&q=80&auto=format&fit=crop" alt="Portero estirándose para una atajada" loading="lazy">
-        <div class="hero-card-number">1</div>
-        <div class="hero-card-overlay">
-          <div class="hero-card-role">El Muro · Portero</div>
-          <div class="hero-card-name">Iván Soler</div>
-          <p class="hero-card-quote">"Mi área es mi casa. Aquí no entra nadie."</p>
-        </div>
-      </article>
-
-      <!-- 4 · La joven promesa (small) -->
-      <article class="hero-card">
-        <img src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=600&q=80&auto=format&fit=crop" alt="Joven jugador concentrado" loading="lazy">
-        <div class="hero-card-number">23</div>
-        <div class="hero-card-overlay">
-          <div class="hero-card-role">Promesa</div>
-          <div class="hero-card-name">Diego Núñez</div>
-        </div>
-      </article>
-
-      <!-- 5 · La revelación (tall) -->
-      <article class="hero-card">
-        <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=900&q=80&auto=format&fit=crop" alt="Jugador saltando en acción" loading="lazy">
-        <div class="hero-card-number">7</div>
-        <div class="hero-card-overlay">
-          <div class="hero-card-role">Revelación · Extremo</div>
-          <div class="hero-card-name">Adrián Mora</div>
-          <p class="hero-card-quote">"Me dijeron que era muy pequeño para esto. Hoy juego un Mundial."</p>
-          <div class="hero-card-stats">
-            <div class="hero-card-stat"><strong>21</strong>Goles</div>
-            <div class="hero-card-stat"><strong>15</strong>Asistencias</div>
+      <!-- 2 · CRISTIANO (wide) -->
+      <article class="star-card">
+        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=1200&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">CRISTIANO</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">CR7 · Portugal</span>
+            <!-- Bandera Portugal -->
+            <div class="star-card-flag" aria-label="Portugal">
+              <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="36" fill="#FF0000"/>
+                <rect width="24" height="36" fill="#006600"/>
+                <circle cx="24" cy="18" r="6" fill="#FFE600" stroke="#FFF" stroke-width="0.5"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"Eterno. El sexto Mundial."</p>
+            <h3 class="star-card-name">Cristiano Ronaldo</h3>
           </div>
         </div>
       </article>
 
-      <!-- 6 · La leyenda (wide bottom) -->
-      <article class="hero-card">
-        <img src="https://images.unsplash.com/photo-1667983090922-3a996b026a26?w=1200&q=80&auto=format&fit=crop" alt="Leyenda del club con trofeos" loading="lazy">
-        <div class="hero-card-number">5</div>
-        <div class="hero-card-overlay">
-          <div class="hero-card-role">Leyenda · Defensa Central</div>
-          <div class="hero-card-name">Sergio Ramírez</div>
-          <p class="hero-card-quote">"Una vida en rojo. Y aún queda otra Champions por levantar."</p>
+      <!-- 3 · MBAPPÉ (medium) -->
+      <article class="star-card">
+        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=900&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">MBAPPÉ</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Francia · 9</span>
+            <!-- Bandera Francia -->
+            <div class="star-card-flag" aria-label="Francia">
+              <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="20" height="36" fill="#002395"/>
+                <rect x="20" width="20" height="36" fill="#FFFFFF"/>
+                <rect x="40" width="20" height="36" fill="#ED2939"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"Velocidad de la luz"</p>
+            <h3 class="star-card-name">Kylian Mbappé</h3>
+          </div>
+        </div>
+      </article>
+
+      <!-- 4 · YAMAL (compact small) -->
+      <article class="star-card">
+        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=600&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">YAMAL</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">España</span>
+            <!-- Bandera España -->
+            <div class="star-card-flag" aria-label="España">
+              <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="36" fill="#AA151B"/>
+                <rect y="9" width="60" height="18" fill="#F1BF00"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"El prodigio"</p>
+            <h3 class="star-card-name">Lamine Yamal</h3>
+          </div>
+        </div>
+      </article>
+
+      <!-- 5 · NEYMAR (tall right) -->
+      <article class="star-card">
+        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">NEYMAR</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Brasil · 10</span>
+            <!-- Bandera Brasil -->
+            <div class="star-card-flag" aria-label="Brasil">
+              <svg viewBox="0 0 60 42" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="42" fill="#009C3B"/>
+                <polygon points="30,4 56,21 30,38 4,21" fill="#FFDF00"/>
+                <circle cx="30" cy="21" r="8" fill="#002776"/>
+                <path d="M22 19 Q30 22 38 19" stroke="#FFFFFF" stroke-width="0.8" fill="none"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"La magia que nunca muere"</p>
+            <h3 class="star-card-name">Neymar Jr</h3>
+            <div class="star-card-meta">
+              <span>Brasil</span><span class="star-card-meta-dot"></span>
+              <span>Santos</span>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <!-- 6 · DEMBÉLÉ (wide bottom) -->
+      <article class="star-card">
+        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1200&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">DEMBÉLÉ</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Francia · Balón de Oro 2025</span>
+            <!-- Bandera Francia -->
+            <div class="star-card-flag" aria-label="Francia">
+              <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="20" height="36" fill="#002395"/>
+                <rect x="20" width="20" height="36" fill="#FFFFFF"/>
+                <rect x="40" width="20" height="36" fill="#ED2939"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"Equilibrio imposible. Regate eterno."</p>
+            <h3 class="star-card-name">Ousmane Dembélé</h3>
+          </div>
         </div>
       </article>
 
