@@ -84,21 +84,136 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .hero{position:relative;overflow:hidden;background:var(--fcb-darker)}
 .hero-track{display:flex;transition:transform 0.6s cubic-bezier(.4,0,.2,1)}
 .hero-slide{min-width:100%;position:relative;aspect-ratio:16/7;overflow:hidden}
-.hero-slide img{width:100%;height:100%;object-fit:cover;transition:transform 8s ease-out}
-.hero-slide.active img{transform:scale(1.05)}
-.hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(10,10,20,0.95) 0%,rgba(10,10,20,0.5) 40%,rgba(10,10,20,0.15) 100%)}
-.hero-content{position:absolute;bottom:0;left:0;right:0;padding:40px 48px 48px}
-.hero-tags{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
-.hero-tag{font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:3px;background:rgba(220,5,45,0.85);color:white}
-.hero-tag.outline{background:transparent;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8)}
-.hero-tag.gold{background:rgba(255,212,0,0.9);color:#0A1F44}
-.hero-title{font-family:var(--font-display);font-size:clamp(24px,4vw,48px);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
-.hero-subtitle{font-size:16px;color:rgba(255,255,255,0.75);max-width:600px}
+.hero-slide img{width:100%;height:100%;object-fit:cover;transition:transform 10s ease-out;filter:saturate(1.08) contrast(1.05)}
+.hero-slide.active img{transform:scale(1.08)}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,
+    rgba(8,4,14,0.55) 0%,
+    rgba(8,4,14,0.15) 30%,
+    rgba(8,4,14,0.65) 70%,
+    rgba(8,4,14,0.95) 100%);
+}
+.hero-content{position:absolute;bottom:0;left:0;right:0;padding:48px 56px 52px;max-width:920px}
+/* Gold accent line drawn before tags */
+.hero-content::before{
+  content:'';
+  position:absolute;
+  left:56px;
+  top:36px;
+  width:0;
+  height:2px;
+  background:#FFD400;
+  box-shadow:0 0 14px rgba(255,212,0,0.6);
+}
+.hero-slide.active .hero-content::before{
+  animation:goldLineExpand 0.9s 0.2s cubic-bezier(.2,.8,.2,1) forwards;
+}
+@keyframes goldLineExpand{
+  from{width:0;opacity:0}
+  to{width:60px;opacity:1}
+}
+
+/* Staggered text entrance per slide */
+.hero-slide .hero-tags,
+.hero-slide .hero-title,
+.hero-slide .hero-subtitle,
+.hero-slide .hero-cta{
+  opacity:0;
+  transform:translateY(24px);
+}
+.hero-slide.active .hero-tags{animation:heroSlideUp 0.8s 0.35s cubic-bezier(.2,.8,.2,1) forwards}
+.hero-slide.active .hero-title{animation:heroSlideUp 0.9s 0.50s cubic-bezier(.2,.8,.2,1) forwards}
+.hero-slide.active .hero-subtitle{animation:heroSlideUp 0.9s 0.65s cubic-bezier(.2,.8,.2,1) forwards}
+.hero-slide.active .hero-cta{animation:heroSlideUp 0.9s 0.80s cubic-bezier(.2,.8,.2,1) forwards}
+@keyframes heroSlideUp{
+  to{opacity:1;transform:translateY(0)}
+}
+
+.hero-tags{display:flex;gap:10px;margin-bottom:18px;flex-wrap:wrap}
+.hero-tag{
+  font-family:var(--font-display);
+  font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;
+  padding:6px 14px;border-radius:2px;
+  background:rgba(220,5,45,0.95);color:white;
+  backdrop-filter:blur(6px);
+  box-shadow:0 4px 18px rgba(220,5,45,0.35);
+}
+.hero-tag.outline{
+  background:rgba(0,0,0,0.35);
+  border:1px solid rgba(255,255,255,0.4);
+  color:rgba(255,255,255,0.95);
+  backdrop-filter:blur(10px);
+  box-shadow:none;
+}
+.hero-tag.gold{
+  background:#FFD400;
+  color:#0A0510;
+  box-shadow:0 4px 18px rgba(255,212,0,0.4);
+}
+.hero-tag.live::before{
+  content:'';
+  display:inline-block;
+  width:6px;height:6px;
+  background:white;
+  border-radius:50%;
+  margin-right:6px;
+  vertical-align:middle;
+  animation:livePulse 1.4s ease-in-out infinite;
+}
+@keyframes livePulse{
+  0%,100%{opacity:1;transform:scale(1)}
+  50%{opacity:0.4;transform:scale(0.8)}
+}
+
+.hero-title{
+  font-family:var(--font-display);
+  font-size:clamp(28px,5vw,58px);
+  font-weight:700;
+  line-height:0.98;
+  letter-spacing:-1px;
+  margin-bottom:14px;
+  text-shadow:0 4px 32px rgba(0,0,0,0.65);
+  max-width:880px;
+}
+.hero-title em{font-style:italic;color:#FFD400;font-weight:600}
+.hero-subtitle{
+  font-size:17px;
+  color:rgba(255,255,255,0.88);
+  max-width:640px;
+  line-height:1.45;
+  margin-bottom:24px;
+  text-shadow:0 2px 12px rgba(0,0,0,0.4);
+  font-weight:400;
+}
 .hero-match{display:flex;align-items:center;gap:12px;margin-top:16px}
 .hero-match img{width:40px;height:40px;border-radius:50%;background:white;padding:4px}
 .hero-vs{font-family:var(--font-display);font-size:13px;font-weight:600;color:rgba(255,255,255,0.5);letter-spacing:2px}
-.hero-cta{display:inline-block;margin-top:16px;padding:10px 24px;border:2px solid var(--fcb-red);background:var(--fcb-red);color:white;font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;border-radius:4px;transition:var(--transition)}
-.hero-cta:hover{background:var(--fcb-dark-red);border-color:var(--fcb-dark-red)}
+.hero-cta{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 28px;
+  background:var(--fcb-red);
+  border:none;
+  color:white;
+  font-family:var(--font-display);
+  font-size:13px;
+  font-weight:600;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  border-radius:999px;
+  transition:background .3s, transform .3s, box-shadow .3s;
+  box-shadow:0 8px 24px rgba(220,5,45,0.4);
+  cursor:pointer;
+}
+.hero-cta:hover{
+  background:var(--fcb-dark-red);
+  transform:translateY(-2px);
+  box-shadow:0 12px 32px rgba(220,5,45,0.55);
+}
+.hero-cta svg{width:14px;height:14px;transition:transform .3s ease}
+.hero-cta:hover svg{transform:translateX(4px)}
 .hero-dots{position:absolute;bottom:20px;right:48px;display:flex;gap:8px;z-index:10}
 .hero-dot{width:10px;height:10px;border-radius:50%;border:2px solid rgba(255,255,255,0.4);background:transparent;cursor:pointer;transition:var(--transition)}
 .hero-dot.active{background:var(--fcb-red);border-color:var(--fcb-red);transform:scale(1.2)}
@@ -359,17 +474,21 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   transition:transform .5s cubic-bezier(.2,.8,.2,1), box-shadow .5s;
   isolation:isolate;
 }
-/* Action photo background (silhouette/motion) */
+/* Action photo background (real player when Wikimedia loads, silhouette/motion fallback) */
 .star-card-photo{
   position:absolute;inset:0;
-  background-size:cover;background-position:center;
-  filter:saturate(0.7) contrast(1.15) brightness(0.55) grayscale(0.15);
+  width:100%;height:100%;
+  object-fit:cover;
+  object-position:center 25%;
+  display:block;
+  filter:saturate(0.75) contrast(1.12) brightness(0.55) grayscale(0.12);
   transition:transform 1.4s cubic-bezier(.2,.8,.2,1), filter .6s;
   z-index:0;
+  background:#1a1a25;
 }
 .star-card:hover .star-card-photo{
   transform:scale(1.08);
-  filter:saturate(1.15) contrast(1.2) brightness(0.7) grayscale(0);
+  filter:saturate(1.18) contrast(1.18) brightness(0.72) grayscale(0);
 }
 /* Cinematic dark gradient overlay */
 .star-card-overlay{
@@ -380,6 +499,22 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
     rgba(10,10,20,0.95) 100%);
   z-index:1;
 }
+/* Country color tint — patriotic identity wash */
+.star-card-tint{
+  position:absolute;inset:0;
+  z-index:1;
+  pointer-events:none;
+  mix-blend-mode:soft-light;
+  opacity:0.85;
+  transition:opacity 0.6s ease;
+}
+.star-card:hover .star-card-tint{opacity:1}
+.star-tint-ar{ background:linear-gradient(135deg, #74ACDF 0%, rgba(255,255,255,0.4) 45%, #74ACDF 100%); }
+.star-tint-pt{ background:linear-gradient(135deg, #006600 0%, transparent 55%, #FF0000 100%); }
+.star-tint-fr{ background:linear-gradient(135deg, #002395 0%, rgba(255,255,255,0.2) 50%, #ED2939 100%); }
+.star-tint-es{ background:linear-gradient(135deg, #AA151B 0%, #F1BF00 50%, #AA151B 100%); }
+.star-tint-br{ background:linear-gradient(135deg, #009C3B 0%, #FFDF00 50%, #002776 100%); }
+.star-tint-fr-gold{ background:linear-gradient(135deg, #002395 0%, #FFD700 55%, #ED2939 100%); }
 /* HUGE typographic surname in background — magazine cover treatment */
 .star-card-typo{
   position:absolute;
@@ -464,13 +599,17 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   box-shadow:0 24px 60px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,212,0,0.25);
 }
 
-/* Mosaic layout — desktop */
+/* Mosaic layout — desktop · 10 stars in 5 rows */
 .star-card:nth-child(1){grid-column:span 3;grid-row:span 2}  /* Messi hero */
 .star-card:nth-child(2){grid-column:span 3;grid-row:span 1}  /* Cristiano wide */
 .star-card:nth-child(3){grid-column:span 2;grid-row:span 1}  /* Mbappé */
 .star-card:nth-child(4){grid-column:span 1;grid-row:span 1}  /* Yamal compact */
 .star-card:nth-child(5){grid-column:span 2;grid-row:span 2}  /* Neymar tall */
 .star-card:nth-child(6){grid-column:span 4;grid-row:span 1}  /* Dembélé wide */
+.star-card:nth-child(7){grid-column:span 2;grid-row:span 1}  /* Vinícius */
+.star-card:nth-child(8){grid-column:span 2;grid-row:span 1}  /* Haaland */
+.star-card:nth-child(9){grid-column:span 3;grid-row:span 1}  /* Bellingham wide */
+.star-card:nth-child(10){grid-column:span 3;grid-row:span 1} /* Wirtz wide */
 
 @media(max-width:1024px){
   .heroes-grid{grid-template-columns:repeat(4,1fr);grid-auto-rows:180px}
@@ -856,44 +995,79 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 <!-- HERO -->
 <section class="hero">
   <div class="hero-track" id="heroTrack">
+
+    <!-- ===== Slide 1 · MUNDIAL HOOK · Past WC celebration ===== -->
     <div class="hero-slide active">
-      <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1920&q=80&auto=format&fit=crop" alt="Estadio del Mundial FIFA 2026">
+      <img src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1920&q=85&auto=format&fit=crop" alt="Celebración mundial">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag gold">Mundial FIFA 2026</span><span class="hero-tag outline">11 jun → 19 jul</span></div>
-        <h2 class="hero-title">Camino al Mundial: Estados Unidos, México y Canadá</h2>
-        <p class="hero-subtitle">El torneo más grande de la historia: 48 selecciones, 16 ciudades, una sola gloria.</p>
-        <a href="#" class="hero-cta">Ver calendario</a>
+        <div class="hero-tags">
+          <span class="hero-tag gold">Mundial FIFA 2026</span>
+          <span class="hero-tag outline live">Faltan 25 días</span>
+        </div>
+        <h2 class="hero-title">El planeta entero cambia de color en <em>25 días</em></h2>
+        <p class="hero-subtitle">USA · México · Canadá. 48 selecciones, 16 ciudades y una corona. El espectáculo más grande del mundo está a punto de empezar.</p>
+        <a href="#" class="hero-cta">
+          Cuenta atrás al Mundial
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </div>
+
+    <!-- ===== Slide 2 · UCL FINAL · Current Champions ===== -->
     <div class="hero-slide">
-      <img src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1920&q=80&auto=format&fit=crop" alt="Trofeo UEFA Champions League">
+      <img src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1920&q=85&auto=format&fit=crop" alt="Trofeo UEFA Champions League">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag">Champions League</span><span class="hero-tag outline">Final 30/05</span></div>
-        <h2 class="hero-title">La Orejona espera: la gran noche de Europa</h2>
-        <p class="hero-subtitle">Galácticos peleó hasta el último minuto su pase a la final. Una temporada que quedará en la memoria.</p>
-        <a href="#" class="hero-cta">Leer crónica</a>
+        <div class="hero-tags">
+          <span class="hero-tag">Final Champions League</span>
+          <span class="hero-tag outline">30 Mayo · Budapest</span>
+        </div>
+        <h2 class="hero-title">PSG vs Arsenal: la noche que Europa <em>contiene el aliento</em></h2>
+        <p class="hero-subtitle">Una final. Una Orejona. París contra Londres en el Puskás Aréna. 90 minutos para entrar en la historia — y otros tantos para olvidarla.</p>
+        <a href="#" class="hero-cta">
+          Camino a la final
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </div>
+
+    <!-- ===== Slide 3 · STARS · Iconic player moment ===== -->
     <div class="hero-slide">
-      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80&auto=format&fit=crop" alt="Estadio repleto de afición">
+      <img src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=1920&q=85&auto=format&fit=crop" alt="Silueta icónica de un jugador">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag">Estadio Cosmos</span><span class="hero-tag outline">Atmósfera</span></div>
-        <h2 class="hero-title">75.000 corazones rojos: la Galaxia nunca duerme</h2>
-        <p class="hero-subtitle">El templo del Galácticos vibró con su afición hasta el último segundo de la temporada.</p>
+        <div class="hero-tags">
+          <span class="hero-tag gold">Estrellas del Mundial</span>
+          <span class="hero-tag outline">Leyendas · Prodigios</span>
+        </div>
+        <h2 class="hero-title">Messi, Cristiano, Yamal: cuando una <em>generación</em> choca con otra</h2>
+        <p class="hero-subtitle">Los que ya escribieron la historia. Los que vienen a reescribirla. Solo el Mundial reúne a los dioses del fútbol en el mismo escenario.</p>
+        <a href="#" class="hero-cta">
+          Conoce a las estrellas
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </div>
+
+    <!-- ===== Slide 4 · ATMOSPHERE · Stadium passion ===== -->
     <div class="hero-slide">
-      <img src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1920&q=80&auto=format&fit=crop" alt="Selección celebrando con bandera">
+      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=85&auto=format&fit=crop" alt="Pasión en la grada">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag gold">Selecciones</span><span class="hero-tag outline">Camino a USA 2026</span></div>
-        <h2 class="hero-title">10 galácticos convocados con sus selecciones para el Mundial</h2>
-        <p class="hero-subtitle">El orgullo de ver el escudo del club en el escenario más grande del fútbol.</p>
+        <div class="hero-tags">
+          <span class="hero-tag">Atmósfera</span>
+          <span class="hero-tag outline">75.000 corazones</span>
+        </div>
+        <h2 class="hero-title">Hay noches que el fútbol no se juega. <em>Se siente.</em></h2>
+        <p class="hero-subtitle">La grada que canta cuando el equipo no puede. El sexto jugador. El templo. La religión laica que abraza al planeta cada cuatro años.</p>
+        <a href="#" class="hero-cta">
+          Vive la pasión
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+        </a>
       </div>
     </div>
+
   </div>
   <div class="hero-arrows">
     <button class="hero-arrow" onclick="changeSlide(-1)" aria-label="Anterior">&#8249;</button>
@@ -1185,15 +1359,18 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 
     <div class="heroes-grid">
 
-      <!-- 1 · MESSI (hero, large) -->
+      <!-- 1 · MESSI 🇦🇷 -->
       <article class="star-card">
-        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1200&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <img class="star-card-photo" alt="Lionel Messi"
+             src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1200&q=80&auto=format&fit=crop"
+             data-wiki="Lionel_Messi"
+             loading="lazy">
+        <div class="star-card-tint star-tint-ar" aria-hidden="true"></div>
         <div class="star-card-overlay"></div>
         <div class="star-card-typo" aria-hidden="true">MESSI</div>
         <div class="star-card-content">
           <div class="star-card-top">
             <span class="star-card-edition">Portada · Edición 01</span>
-            <!-- Bandera Argentina -->
             <div class="star-card-flag" aria-label="Argentina">
               <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="60" height="12" fill="#74ACDF"/>
@@ -1215,15 +1392,18 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         </div>
       </article>
 
-      <!-- 2 · CRISTIANO (wide) -->
+      <!-- 2 · CRISTIANO 🇵🇹 -->
       <article class="star-card">
-        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=1200&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <img class="star-card-photo" alt="Cristiano Ronaldo"
+             src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=1200&q=80&auto=format&fit=crop"
+             data-wiki="Cristiano_Ronaldo"
+             loading="lazy">
+        <div class="star-card-tint star-tint-pt" aria-hidden="true"></div>
         <div class="star-card-overlay"></div>
         <div class="star-card-typo" aria-hidden="true">CRISTIANO</div>
         <div class="star-card-content">
           <div class="star-card-top">
             <span class="star-card-edition">CR7 · Portugal</span>
-            <!-- Bandera Portugal -->
             <div class="star-card-flag" aria-label="Portugal">
               <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="60" height="36" fill="#FF0000"/>
@@ -1239,15 +1419,18 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         </div>
       </article>
 
-      <!-- 3 · MBAPPÉ (medium) -->
+      <!-- 3 · MBAPPÉ 🇫🇷 -->
       <article class="star-card">
-        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=900&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <img class="star-card-photo" alt="Kylian Mbappé"
+             src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=900&q=80&auto=format&fit=crop"
+             data-wiki="Kylian_Mbappé"
+             loading="lazy">
+        <div class="star-card-tint star-tint-fr" aria-hidden="true"></div>
         <div class="star-card-overlay"></div>
         <div class="star-card-typo" aria-hidden="true">MBAPPÉ</div>
         <div class="star-card-content">
           <div class="star-card-top">
             <span class="star-card-edition">Francia · 9</span>
-            <!-- Bandera Francia -->
             <div class="star-card-flag" aria-label="Francia">
               <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="20" height="36" fill="#002395"/>
@@ -1263,15 +1446,18 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         </div>
       </article>
 
-      <!-- 4 · YAMAL (compact small) -->
+      <!-- 4 · YAMAL 🇪🇸 -->
       <article class="star-card">
-        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=600&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <img class="star-card-photo" alt="Lamine Yamal"
+             src="https://images.unsplash.com/photo-1543351611-58f69d7c1781?w=600&q=80&auto=format&fit=crop"
+             data-wiki="Lamine_Yamal"
+             loading="lazy">
+        <div class="star-card-tint star-tint-es" aria-hidden="true"></div>
         <div class="star-card-overlay"></div>
         <div class="star-card-typo" aria-hidden="true">YAMAL</div>
         <div class="star-card-content">
           <div class="star-card-top">
             <span class="star-card-edition">España</span>
-            <!-- Bandera España -->
             <div class="star-card-flag" aria-label="España">
               <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="60" height="36" fill="#AA151B"/>
@@ -1286,15 +1472,18 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         </div>
       </article>
 
-      <!-- 5 · NEYMAR (tall right) -->
+      <!-- 5 · NEYMAR 🇧🇷 -->
       <article class="star-card">
-        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=900&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <img class="star-card-photo" alt="Neymar Jr"
+             src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=900&q=80&auto=format&fit=crop"
+             data-wiki="Neymar"
+             loading="lazy">
+        <div class="star-card-tint star-tint-br" aria-hidden="true"></div>
         <div class="star-card-overlay"></div>
         <div class="star-card-typo" aria-hidden="true">NEYMAR</div>
         <div class="star-card-content">
           <div class="star-card-top">
             <span class="star-card-edition">Brasil · 10</span>
-            <!-- Bandera Brasil -->
             <div class="star-card-flag" aria-label="Brasil">
               <svg viewBox="0 0 60 42" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="60" height="42" fill="#009C3B"/>
@@ -1315,15 +1504,18 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         </div>
       </article>
 
-      <!-- 6 · DEMBÉLÉ (wide bottom) -->
+      <!-- 6 · DEMBÉLÉ 🇫🇷 -->
       <article class="star-card">
-        <div class="star-card-photo" style="background-image:url('https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1200&q=80&auto=format&fit=crop')" aria-hidden="true"></div>
+        <img class="star-card-photo" alt="Ousmane Dembélé"
+             src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1200&q=80&auto=format&fit=crop"
+             data-wiki="Ousmane_Dembélé"
+             loading="lazy">
+        <div class="star-card-tint star-tint-fr-gold" aria-hidden="true"></div>
         <div class="star-card-overlay"></div>
         <div class="star-card-typo" aria-hidden="true">DEMBÉLÉ</div>
         <div class="star-card-content">
           <div class="star-card-top">
             <span class="star-card-edition">Francia · Balón de Oro 2025</span>
-            <!-- Bandera Francia -->
             <div class="star-card-flag" aria-label="Francia">
               <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
                 <rect width="20" height="36" fill="#002395"/>
@@ -1339,7 +1531,125 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         </div>
       </article>
 
+      <!-- 7 · VINÍCIUS JR 🇧🇷 -->
+      <article class="star-card">
+        <img class="star-card-photo" alt="Vinícius Júnior"
+             src="https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=900&q=80&auto=format&fit=crop"
+             data-wiki="Vinícius_Júnior"
+             loading="lazy">
+        <div class="star-card-tint star-tint-br" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">VINÍCIUS</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Brasil · 7</span>
+            <div class="star-card-flag" aria-label="Brasil">
+              <svg viewBox="0 0 60 42" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="42" fill="#009C3B"/>
+                <polygon points="30,4 56,21 30,38 4,21" fill="#FFDF00"/>
+                <circle cx="30" cy="21" r="8" fill="#002776"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"Samba pura. Vértigo en banda."</p>
+            <h3 class="star-card-name">Vinícius Jr</h3>
+          </div>
+        </div>
+      </article>
+
+      <!-- 8 · HAALAND 🇳🇴 -->
+      <article class="star-card">
+        <img class="star-card-photo" alt="Erling Haaland"
+             src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=900&q=80&auto=format&fit=crop"
+             data-wiki="Erling_Haaland"
+             loading="lazy">
+        <!-- Noruega: rojo con cruz azul/blanca -->
+        <div class="star-card-tint" style="background:linear-gradient(135deg,#EF2B2D 0%, rgba(255,255,255,0.3) 50%, #002868 100%);mix-blend-mode:soft-light;opacity:0.85;position:absolute;inset:0;z-index:1;pointer-events:none" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">HAALAND</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Noruega · 9</span>
+            <div class="star-card-flag" aria-label="Noruega">
+              <svg viewBox="0 0 60 44" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="44" fill="#EF2B2D"/>
+                <rect x="16" width="6" height="44" fill="#FFFFFF"/>
+                <rect y="19" width="60" height="6" fill="#FFFFFF"/>
+                <rect x="18" width="2" height="44" fill="#002868"/>
+                <rect y="21" width="60" height="2" fill="#002868"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"El gigante de hielo"</p>
+            <h3 class="star-card-name">Erling Haaland</h3>
+          </div>
+        </div>
+      </article>
+
+      <!-- 9 · BELLINGHAM 🏴󠁧󠁢󠁥󠁮󠁧󠁿 -->
+      <article class="star-card">
+        <img class="star-card-photo" alt="Jude Bellingham"
+             src="https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1200&q=80&auto=format&fit=crop"
+             data-wiki="Jude_Bellingham"
+             loading="lazy">
+        <!-- Inglaterra: blanco con cruz roja de San Jorge -->
+        <div class="star-card-tint" style="background:linear-gradient(135deg, rgba(255,255,255,0.4) 0%, transparent 50%, #CE1124 100%);mix-blend-mode:soft-light;opacity:0.85;position:absolute;inset:0;z-index:1;pointer-events:none" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">BELLINGHAM</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Inglaterra · 10</span>
+            <div class="star-card-flag" aria-label="Inglaterra">
+              <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="36" fill="#FFFFFF"/>
+                <rect x="25" width="10" height="36" fill="#CE1124"/>
+                <rect y="13" width="60" height="10" fill="#CE1124"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"Elegancia con galones de capitán"</p>
+            <h3 class="star-card-name">Jude Bellingham</h3>
+          </div>
+        </div>
+      </article>
+
+      <!-- 10 · WIRTZ 🇩🇪 -->
+      <article class="star-card">
+        <img class="star-card-photo" alt="Florian Wirtz"
+             src="https://images.unsplash.com/photo-1577223625816-7546f13df25d?w=900&q=80&auto=format&fit=crop"
+             data-wiki="Florian_Wirtz"
+             loading="lazy">
+        <!-- Alemania: negro/rojo/dorado -->
+        <div class="star-card-tint" style="background:linear-gradient(135deg, #000000 0%, #DD0000 50%, #FFCE00 100%);mix-blend-mode:soft-light;opacity:0.7;position:absolute;inset:0;z-index:1;pointer-events:none" aria-hidden="true"></div>
+        <div class="star-card-overlay"></div>
+        <div class="star-card-typo" aria-hidden="true">WIRTZ</div>
+        <div class="star-card-content">
+          <div class="star-card-top">
+            <span class="star-card-edition">Alemania · 10</span>
+            <div class="star-card-flag" aria-label="Alemania">
+              <svg viewBox="0 0 60 36" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                <rect width="60" height="12" fill="#000000"/>
+                <rect y="12" width="60" height="12" fill="#DD0000"/>
+                <rect y="24" width="60" height="12" fill="#FFCE00"/>
+              </svg>
+            </div>
+          </div>
+          <div class="star-card-bottom">
+            <p class="star-card-tagline">"El nuevo cerebro alemán"</p>
+            <h3 class="star-card-name">Florian Wirtz</h3>
+          </div>
+        </div>
+      </article>
+
     </div>
+
+    <!-- Atribución Creative Commons -->
+    <p style="font-size:11px;color:rgba(255,255,255,0.35);text-align:right;margin-top:18px;letter-spacing:0.3px;font-family:var(--font-body)">
+      Fotografías: Wikimedia Commons (CC BY-SA) · Imágenes de respaldo: Unsplash
+    </p>
   </div>
 </section>
 
@@ -1352,11 +1662,10 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   <div class="news-tabs" id="newsTabs">
     <button class="news-tab active" data-tab="todos">Todos</button>
     <button class="news-tab" data-tab="mundial">Mundial 2026</button>
-    <button class="news-tab" data-tab="club">Club</button>
-    <button class="news-tab" data-tab="champions">Liga de Campeones</button>
-    <button class="news-tab" data-tab="liga">Liga</button>
-    <button class="news-tab" data-tab="femenino">Femenino</button>
-    <button class="news-tab" data-tab="tv">Galácticos TV</button>
+    <button class="news-tab" data-tab="champions">Champions League</button>
+    <button class="news-tab" data-tab="liga">La Liga</button>
+    <button class="news-tab" data-tab="premier">Premier League</button>
+    <button class="news-tab" data-tab="bundesliga">Bundesliga</button>
   </div>
   <div class="news-grid" id="newsGrid"></div>
 </section>
@@ -1600,6 +1909,36 @@ function updateAllCountdowns() {
   }, 1000);
 })();
 
+/* ---------- Wikipedia photo upgrade (progressive enhancement) ----------
+   Each <img data-wiki="ArticleName"> initially shows an Unsplash fallback.
+   On load, we fetch Wikipedia's REST API to get the real player photo,
+   then upgrade the src. If the fetch fails (network, CORS, no thumbnail),
+   the Unsplash photo stays — so the page always looks good.
+   ------------------------------------------------------------------------ */
+async function upgradePhotoFromWiki(img) {
+  const article = img.dataset.wiki;
+  if (!article) return;
+  try {
+    const apiUrl = `https://en.wikipedia.org/api/rest_v1/page/summary/${encodeURIComponent(article)}`;
+    const res = await fetch(apiUrl, { headers: { 'Accept': 'application/json' } });
+    if (!res.ok) return;
+    const data = await res.json();
+    const thumb = data.thumbnail && data.thumbnail.source;
+    if (!thumb) return;
+    // Wikipedia returns small thumbnails; upgrade to higher res
+    const hiRes = thumb.replace(/\/\d+px-/, '/800px-');
+    // Preload to ensure the new URL works before swapping (avoids broken-image flash)
+    const test = new Image();
+    test.onload = () => { img.src = hiRes; };
+    test.onerror = () => {}; // keep Unsplash fallback
+    test.src = hiRes;
+  } catch (e) { /* network/CORS error — keep Unsplash fallback */ }
+}
+
+function upgradeAllStarPhotos() {
+  document.querySelectorAll('img[data-wiki]').forEach(upgradePhotoFromWiki);
+}
+
 /* ---------- Logo fallback (when Wikipedia/external image fails) ---------- */
 // Replaces a broken team logo image with a clean gradient badge showing initials.
 // Each team passes its own brand colors so the fallback still feels "official".
@@ -1634,41 +1973,47 @@ function scrollMatches(dir) {
 
 /* ---------- News ---------- */
 const newsData = [
-  { img:'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1024&q=80&auto=format&fit=crop',
+  // 1 · UCL Final
+  { img:'https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1024&q=80&auto=format&fit=crop',
+    badge:'Champions League', badgeClass:'',
+    title:'PSG vs Arsenal: la final que pintará Budapest de rojo',
+    desc:'El sábado 30 de mayo, el Puskás Aréna acoge el partido más esperado de la temporada europea.',
+    date:'17 May 2026', cat:['todos','champions'] },
+
+  // 2 · Mundial countdown
+  { img:'https://images.unsplash.com/photo-1659990370632-28bbe6e355c6?w=1024&q=80&auto=format&fit=crop',
     badge:'Mundial 2026', badgeClass:'wc',
-    title:'Faltan menos de 30 días para el sueño: arranca el Mundial FIFA 2026',
-    desc:'48 selecciones, 16 sedes y 104 partidos repartidos entre USA, México y Canadá.',
+    title:'Faltan 25 días: USA, México y Canadá ultiman su Copa del Mundo',
+    desc:'48 selecciones, 16 sedes y 104 partidos. El torneo más grande de la historia ya casi llega.',
     date:'17 May 2026', cat:['todos','mundial'] },
 
+  // 3 · La Liga champion
+  { img:'https://images.unsplash.com/photo-1667983090922-3a996b026a26?w=1024&q=80&auto=format&fit=crop',
+    badge:'La Liga', badgeClass:'',
+    title:'Barcelona campeón con su 29º título tras un Clásico de leyenda',
+    desc:'El 2-0 al Real Madrid en la jornada 35 selló matemáticamente la Liga para los azulgranas.',
+    date:'11 May 2026', cat:['todos','liga'] },
+
+  // 4 · Bundesliga · Bayern + Kane top scorer
+  { img:'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1024&q=80&auto=format&fit=crop',
+    badge:'Bundesliga', badgeClass:'',
+    title:'Bayern Múnich campeón: Kane gana su segunda Torjägerkanone con 36 goles',
+    desc:'El delantero inglés cierra una Bundesliga de récord y sella su segundo título como máximo goleador.',
+    date:'16 May 2026', cat:['todos','bundesliga'] },
+
+  // 5 · Premier League final day
+  { img:'https://images.unsplash.com/photo-1517466787929-bc90951d0974?w=1024&q=80&auto=format&fit=crop',
+    badge:'Premier League', badgeClass:'',
+    title:'Domingo 24: 10 partidos a la vez deciden la Premier League',
+    desc:'Título, plazas de Champions y descenso se resolverán en una de las jornadas más tensas del año.',
+    date:'15 May 2026', cat:['todos','premier'] },
+
+  // 6 · Mundial stars
   { img:'https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1024&q=80&auto=format&fit=crop',
-    badge:'Convocatoria', badgeClass:'wc',
-    title:'10 galácticos convocados con sus selecciones para el Mundial',
-    desc:'El club bate récord de internacionales convocados para una Copa del Mundo.',
-    date:'16 May 2026', cat:['todos','mundial','club'] },
-
-  { img:'https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1024&q=80&auto=format&fit=crop',
-    badge:'Champions League',
-    title:'Camino a la final: una temporada europea para enmarcar',
-    desc:'El Galácticos firma una de las mejores Champions de su historia reciente.',
-    date:'15 May 2026', cat:['todos','champions'] },
-
-  { img:'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1024&q=80&auto=format&fit=crop',
-    badge:'Estadio Cosmos',
-    title:'La grada rugió: 75.000 voces en una noche para la historia',
-    desc:'La afición galáctica empuja al equipo hasta el último segundo.',
-    date:'14 May 2026', cat:['todos','club'] },
-
-  { img:'https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1024&q=80&auto=format&fit=crop',
-    badge:'Liga',
-    title:'A un partido del título: la última jornada decide la liga',
-    desc:'El sábado 23 de mayo se cierra una temporada épica en casa.',
-    date:'13 May 2026', cat:['todos','liga'] },
-
-  { img:'https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=1024&q=80&auto=format&fit=crop',
-    badge:'Femenino',
-    title:'Las Galácticas, a un paso de su primer título europeo',
-    desc:'La sección femenina disputa la final continental el próximo fin de semana.',
-    date:'12 May 2026', cat:['todos','femenino'] }
+    badge:'Mundial 2026', badgeClass:'wc',
+    title:'Messi, Cristiano, Mbappé y Yamal: las estrellas que harán historia',
+    desc:'La última gran cita generacional con leyendas eternas y prodigios jóvenes peleando por la gloria.',
+    date:'14 May 2026', cat:['todos','mundial'] }
 ];
 
 function renderNews(filter = 'todos') {
@@ -1841,6 +2186,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setTimeout(animateCounters, 500);
   startTickerAuto();
   startMatchAuto();
+  upgradeAllStarPhotos();
 });
 </script>
 </body>
