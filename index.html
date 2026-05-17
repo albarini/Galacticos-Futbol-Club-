@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Galácticos FC - Camino al Mundial FIFA 2026. Toda la información del club de las estrellas y la cuenta atrás para el evento deportivo más grande del año.">
+<meta name="description" content="Galácticos FC - Cuenta atrás a la Fiesta Familiar de Ingeniería Civil UNSA, la final de la Champions League y el inicio del Mundial FIFA 2026.">
 <meta name="theme-color" content="#0A1F44">
-<title>Galácticos FC · Camino al Mundial FIFA 2026</title>
+<title>Galácticos FC · Fiesta Familiar Ing. Civil UNSA · Mundial 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -148,6 +148,71 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .countdown-sep{font-family:var(--font-display);font-size:clamp(32px,5vw,52px);font-weight:300;color:rgba(255,255,255,0.25);line-height:1;padding:0 2px;margin-top:2px}
 .match-plan-btn{border:1px solid var(--fcb-red);color:var(--fcb-red);font-family:var(--font-display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:10px 22px;border-radius:4px;transition:var(--transition);white-space:nowrap;background:transparent;cursor:pointer}
 .match-plan-btn:hover{background:var(--fcb-red);color:white}
+
+/* === SECONDARY COUNTDOWNS (UCL + Mundial) === */
+.countdown-secondary{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:14px;
+  max-width:780px;
+  margin:32px auto 0;
+  padding:0 8px;
+}
+.cd-mini{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  background:linear-gradient(135deg,rgba(28,28,42,0.95) 0%,rgba(20,20,32,0.9) 100%);
+  border:1px solid var(--fcb-border);
+  border-radius:10px;
+  padding:14px 18px;
+  position:relative;
+  overflow:hidden;
+  transition:var(--transition);
+}
+.cd-mini::before{
+  content:'';position:absolute;left:0;top:0;bottom:0;width:3px;
+  background:var(--accent,#E11D2C);
+  box-shadow:0 0 12px var(--accent,#E11D2C);
+}
+.cd-mini:hover{transform:translateY(-2px);border-color:rgba(255,255,255,0.15)}
+.cd-mini-ucl{--accent:#1565C0}
+.cd-mini-wc{--accent:#FFD400}
+.cd-mini-icon{
+  width:40px;height:40px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  background:rgba(255,255,255,0.04);
+  flex-shrink:0;
+  font-size:18px;
+}
+.cd-mini-body{flex:1;min-width:0}
+.cd-mini-label{
+  font-family:var(--font-display);
+  font-size:10px;font-weight:600;
+  text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--accent,#E11D2C);
+  line-height:1;margin-bottom:4px;
+}
+.cd-mini-title{
+  font-family:var(--font-display);
+  font-size:14px;font-weight:600;
+  color:var(--fcb-white);
+  line-height:1.2;margin-bottom:6px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
+}
+.cd-mini-time{
+  display:flex;align-items:baseline;gap:3px;
+  font-family:var(--font-display);
+  font-variant-numeric:tabular-nums;
+}
+.cd-mini-time .n{font-size:18px;font-weight:700;color:var(--fcb-white);line-height:1}
+.cd-mini-time .u{font-size:10px;font-weight:500;color:var(--fcb-gray);letter-spacing:1px;margin-right:6px}
+.cd-mini-time .sep{color:rgba(255,255,255,0.2);font-size:14px;margin:0 2px}
+
+@media(max-width:640px){
+  .countdown-secondary{grid-template-columns:1fr}
+  .cd-mini-title{font-size:13px}
+}
 
 /* === MATCH CAROUSEL === */
 .match-carousel-wrap{max-width:1320px;margin:32px auto 0;position:relative;z-index:1}
@@ -521,10 +586,10 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 <!-- MATCH CENTER: COUNTDOWN + CAROUSEL -->
 <section class="match-center">
   <div class="countdown-wrapper">
-    <div class="countdown-label">Mundial FIFA 2026 · Estados Unidos · México · Canadá</div>
-    <div class="countdown-sublabel" id="countdownEvent">14 de junio · Inicio de la jornada estelar</div>
+    <div class="countdown-label">Fiesta Familiar · Ingeniería Civil UNSA</div>
+    <div class="countdown-sublabel" id="countdownEvent">14 de junio · Arequipa · Universidad Nacional de San Agustín</div>
     <div class="countdown-top">
-      <div class="countdown-row" role="timer" aria-live="polite" aria-label="Cuenta atrás al Mundial">
+      <div class="countdown-row" role="timer" aria-live="polite" aria-label="Cuenta atrás a la Fiesta Familiar Ing. Civil UNSA">
         <div class="countdown-block"><div class="countdown-num" id="cd-days">--</div><div class="countdown-unit">Días</div></div>
         <div class="countdown-sep">:</div>
         <div class="countdown-block"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-unit">Hrs</div></div>
@@ -533,7 +598,43 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
         <div class="countdown-sep">:</div>
         <div class="countdown-block"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-unit">Seg</div></div>
       </div>
-      <button class="match-plan-btn" type="button">Plan de partido</button>
+      <button class="match-plan-btn" type="button">Ver detalles</button>
+    </div>
+
+    <!-- Secondary countdowns: UCL Final + World Cup -->
+    <div class="countdown-secondary">
+      <div class="cd-mini cd-mini-ucl" role="timer" aria-live="polite" aria-label="Cuenta atrás a la Final de la Champions League">
+        <div class="cd-mini-icon" aria-hidden="true">🏆</div>
+        <div class="cd-mini-body">
+          <div class="cd-mini-label">Final UCL · 30 Mayo</div>
+          <div class="cd-mini-title">PSG vs Arsenal · Budapest</div>
+          <div class="cd-mini-time">
+            <span class="n" id="ucl-d">--</span><span class="u">d</span>
+            <span class="sep">·</span>
+            <span class="n" id="ucl-h">--</span><span class="u">h</span>
+            <span class="sep">·</span>
+            <span class="n" id="ucl-m">--</span><span class="u">m</span>
+            <span class="sep">·</span>
+            <span class="n" id="ucl-s">--</span><span class="u">s</span>
+          </div>
+        </div>
+      </div>
+      <div class="cd-mini cd-mini-wc" role="timer" aria-live="polite" aria-label="Cuenta atrás al Mundial FIFA 2026">
+        <div class="cd-mini-icon" aria-hidden="true">🌎</div>
+        <div class="cd-mini-body">
+          <div class="cd-mini-label">Mundial FIFA · 11 Junio</div>
+          <div class="cd-mini-title">México vs Sudáfrica · Azteca</div>
+          <div class="cd-mini-time">
+            <span class="n" id="wc-d">--</span><span class="u">d</span>
+            <span class="sep">·</span>
+            <span class="n" id="wc-h">--</span><span class="u">h</span>
+            <span class="sep">·</span>
+            <span class="n" id="wc-m">--</span><span class="u">m</span>
+            <span class="sep">·</span>
+            <span class="n" id="wc-s">--</span><span class="u">s</span>
+          </div>
+        </div>
+      </div>
     </div>
     <!-- Match Carousel -->
     <div class="match-carousel-wrap">
@@ -811,55 +912,76 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 'use strict';
 
 /* ==========================================================================
-   GALÁCTICOS FC · Camino al Mundial FIFA 2026
-   Cuenta atrás real al 14 de junio de 2026 (jornada estelar del Mundial)
+   GALÁCTICOS FC · Triple Countdown
+   1) Fiesta Familiar Ing. Civil UNSA — 14 jun 2026, 12:00 hora Perú
+   2) Final UEFA Champions League    — 30 may 2026, 18:00 CEST (Budapest)
+   3) Inicio Mundial FIFA 2026       — 11 jun 2026, 15:00 hora México (Azteca)
    ========================================================================== */
 
-/* ---------- Countdown (precise, timezone-safe) ---------- */
-// Target: 14 de junio 2026, 17:00 UTC
-// = 12:00 PM hora de Perú (GMT-5)
-// = 1:00 PM ET (kickoff Germany vs Curaçao en Houston)
-// = 19:00 CEST (Alemania)
-const WC_TARGET = new Date('2026-06-14T17:00:00Z');
+// Objetivos en UTC para que sean precisos desde cualquier zona horaria
+const TARGETS = {
+  unsa: new Date('2026-06-14T17:00:00Z'), // 12:00 PM Perú (GMT-5)
+  ucl:  new Date('2026-05-30T16:00:00Z'), // 18:00 CEST (Budapest)
+  wc:   new Date('2026-06-11T21:00:00Z')  // 15:00 hora México (CDT, GMT-6)
+};
 
 const $ = (id) => document.getElementById(id);
 const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
 
-function updateCountdown() {
-  const diff = WC_TARGET.getTime() - Date.now();
-
-  // Banner (just days)
-  const banner = $('wcDaysBanner');
-
-  if (diff <= 0) {
-    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
-      const el = $(id); if (el) el.textContent = '00';
-    });
-    const ev = $('countdownEvent');
-    if (ev) ev.textContent = '¡La jornada del Mundial está en marcha!';
-    if (banner) banner.textContent = '0';
-    return false; // stop ticking
-  }
-
-  const days  = Math.floor(diff / 86_400_000);
-  const hours = Math.floor((diff % 86_400_000) / 3_600_000);
-  const mins  = Math.floor((diff % 3_600_000) / 60_000);
-  const secs  = Math.floor((diff % 60_000) / 1_000);
-
-  $('cd-days').textContent  = pad(days);
-  $('cd-hours').textContent = pad(hours);
-  $('cd-mins').textContent  = pad(mins);
-  $('cd-secs').textContent  = pad(secs);
-  if (banner) banner.textContent = days;
-
-  return true;
+function diffParts(target) {
+  const diff = target.getTime() - Date.now();
+  if (diff <= 0) return { done: true, d: 0, h: 0, m: 0, s: 0 };
+  return {
+    done: false,
+    d: Math.floor(diff / 86_400_000),
+    h: Math.floor((diff % 86_400_000) / 3_600_000),
+    m: Math.floor((diff % 3_600_000) / 60_000),
+    s: Math.floor((diff % 60_000) / 1_000)
+  };
 }
 
-(function startCountdown(){
-  updateCountdown();
-  // Use setInterval, but check return value to allow self-stopping
+function setText(id, val) { const el = $(id); if (el) el.textContent = val; }
+
+function updateAllCountdowns() {
+  // 1) Main countdown — UNSA family party
+  const p = diffParts(TARGETS.unsa);
+  if (p.done) {
+    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => setText(id, '00'));
+    const ev = $('countdownEvent');
+    if (ev) ev.textContent = '¡La Fiesta Familiar Ing. Civil UNSA ya empezó!';
+  } else {
+    setText('cd-days',  pad(p.d));
+    setText('cd-hours', pad(p.h));
+    setText('cd-mins',  pad(p.m));
+    setText('cd-secs',  pad(p.s));
+  }
+
+  // 2) Champions League Final
+  const u = diffParts(TARGETS.ucl);
+  setText('ucl-d', u.done ? '0' : pad(u.d));
+  setText('ucl-h', u.done ? '00' : pad(u.h));
+  setText('ucl-m', u.done ? '00' : pad(u.m));
+  setText('ucl-s', u.done ? '00' : pad(u.s));
+
+  // 3) World Cup kickoff
+  const w = diffParts(TARGETS.wc);
+  setText('wc-d', w.done ? '0' : pad(w.d));
+  setText('wc-h', w.done ? '00' : pad(w.h));
+  setText('wc-m', w.done ? '00' : pad(w.m));
+  setText('wc-s', w.done ? '00' : pad(w.s));
+
+  // Banner (days to WC kickoff)
+  const banner = $('wcDaysBanner');
+  if (banner) banner.textContent = w.done ? '0' : w.d;
+
+  // Stop ticking only when all three are done
+  return !(p.done && u.done && w.done);
+}
+
+(function startCountdowns(){
+  updateAllCountdowns();
   const t = setInterval(() => {
-    if (!updateCountdown()) clearInterval(t);
+    if (!updateAllCountdowns()) clearInterval(t);
   }, 1000);
 })();
 
