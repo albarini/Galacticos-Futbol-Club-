@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Galácticos FC - Página web oficial del club de las estrellas</title>
+<meta name="description" content="Galácticos FC - Camino al Mundial FIFA 2026. Toda la información del club de las estrellas y la cuenta atrás para el evento deportivo más grande del año.">
+<meta name="theme-color" content="#0A1F44">
+<title>Galácticos FC · Camino al Mundial FIFA 2026</title>
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
@@ -19,6 +21,8 @@
   --fcb-bg:#111118;
   --fcb-card:#1C1C2A;
   --fcb-border:rgba(255,255,255,0.08);
+  --wc-gold:#FFD400;
+  --wc-blue:#1565C0;
   --font-display:'Oswald',sans-serif;
   --font-body:'Source Sans 3',sans-serif;
   --header-h:64px;
@@ -87,6 +91,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .hero-tags{display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap}
 .hero-tag{font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:4px 12px;border-radius:3px;background:rgba(220,5,45,0.85);color:white}
 .hero-tag.outline{background:transparent;border:1px solid rgba(255,255,255,0.3);color:rgba(255,255,255,0.8)}
+.hero-tag.gold{background:rgba(255,212,0,0.9);color:#0A1F44}
 .hero-title{font-family:var(--font-display);font-size:clamp(24px,4vw,48px);font-weight:700;line-height:1.1;margin-bottom:8px;text-shadow:0 2px 20px rgba(0,0,0,0.5)}
 .hero-subtitle{font-size:16px;color:rgba(255,255,255,0.75);max-width:600px}
 .hero-match{display:flex;align-items:center;gap:12px;margin-top:16px}
@@ -113,7 +118,6 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 
 /* === MATCH CENTER WITH ANIMATED RED LINE === */
 .match-center{background:var(--fcb-darker);position:relative;padding:48px 24px 40px;overflow:hidden}
-/* Subtle animated red line at top */
 .match-center::before{
   content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,
@@ -131,18 +135,18 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   0%{background-position:200% 0}
   100%{background-position:-200% 0}
 }
-/* Ambient glow */
 .match-center::after{content:'';position:absolute;top:-80px;left:50%;transform:translateX(-50%);width:500px;height:250px;border-radius:50%;background:radial-gradient(ellipse,rgba(220,5,45,0.05) 0%,transparent 70%);pointer-events:none}
 
 .countdown-wrapper{max-width:1320px;margin:0 auto;position:relative;z-index:1}
-.countdown-label{font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--fcb-white);text-align:center;margin-bottom:20px}
+.countdown-label{font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:3px;color:var(--fcb-white);text-align:center;margin-bottom:6px}
+.countdown-sublabel{font-family:var(--font-display);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:2px;color:var(--wc-gold);text-align:center;margin-bottom:20px}
 .countdown-top{display:flex;align-items:center;justify-content:center;gap:24px;position:relative;flex-wrap:wrap}
 .countdown-row{display:flex;align-items:flex-start;justify-content:center;gap:4px}
 .countdown-block{display:flex;flex-direction:column;align-items:center;min-width:70px}
-.countdown-num{font-family:var(--font-display);font-size:clamp(40px,6vw,64px);font-weight:700;color:var(--fcb-red);line-height:1;text-shadow:0 0 30px rgba(220,5,45,0.3)}
+.countdown-num{font-family:var(--font-display);font-size:clamp(40px,6vw,64px);font-weight:700;color:var(--fcb-red);line-height:1;text-shadow:0 0 30px rgba(220,5,45,0.3);font-variant-numeric:tabular-nums}
 .countdown-unit{font-family:var(--font-display);font-size:11px;font-weight:500;text-transform:uppercase;letter-spacing:2px;color:var(--fcb-gray);margin-top:4px}
 .countdown-sep{font-family:var(--font-display);font-size:clamp(32px,5vw,52px);font-weight:300;color:rgba(255,255,255,0.25);line-height:1;padding:0 2px;margin-top:2px}
-.match-plan-btn{border:1px solid var(--fcb-red);color:var(--fcb-red);font-family:var(--font-display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:10px 22px;border-radius:4px;transition:var(--transition);white-space:nowrap}
+.match-plan-btn{border:1px solid var(--fcb-red);color:var(--fcb-red);font-family:var(--font-display);font-size:13px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:10px 22px;border-radius:4px;transition:var(--transition);white-space:nowrap;background:transparent;cursor:pointer}
 .match-plan-btn:hover{background:var(--fcb-red);color:white}
 
 /* === MATCH CAROUSEL === */
@@ -159,11 +163,11 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .match-team-logo img{width:100%;height:100%;object-fit:contain}
 .match-score{font-family:var(--font-display);font-size:28px;font-weight:700;color:var(--fcb-white);letter-spacing:2px;display:flex;flex-direction:column;align-items:center}
 .match-score-sub{font-size:12px;font-weight:400;color:var(--fcb-gray);letter-spacing:0}
-.match-date{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--fcb-white);display:flex;flex-direction:column;align-items:center}
+.match-date{font-family:var(--font-display);font-size:16px;font-weight:700;color:var(--fcb-white);display:flex;flex-direction:column;align-items:center;text-align:center}
 .match-date span{font-size:12px;font-weight:400;color:var(--fcb-gray)}
 .match-league-icon{width:20px;height:20px;position:absolute;top:14px;left:14px;opacity:0.5}
 .match-nav{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:20px}
-.match-nav-dot{width:24px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);cursor:pointer;transition:var(--transition)}
+.match-nav-dot{width:24px;height:4px;border-radius:2px;background:rgba(255,255,255,0.15);cursor:pointer;transition:var(--transition);border:none}
 .match-nav-dot.active{background:var(--fcb-red);width:36px}
 .match-nav-arrow{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.06);border:1px solid var(--fcb-border);color:white;font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition)}
 .match-nav-arrow:hover{background:rgba(220,5,45,0.15);border-color:var(--fcb-red)}
@@ -178,6 +182,25 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .banner-tag{font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.85);margin-bottom:4px}
 .banner-title{font-family:var(--font-display);font-size:clamp(15px,1.6vw,19px);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;line-height:1.15;text-shadow:0 2px 12px rgba(0,0,0,0.5)}
 
+/* World Cup countdown banner */
+.banner-wc{
+  background:linear-gradient(135deg,#1565C0 0%,#0A1F44 50%,#0D1B2A 100%);
+  overflow:hidden;
+}
+.banner-wc::before{
+  content:'';position:absolute;left:-20px;top:50%;transform:translateY(-50%);
+  width:140px;height:140px;
+  background:radial-gradient(circle,rgba(255,212,0,0.18) 0%,transparent 70%);
+  z-index:1;
+}
+.banner-wc-content{display:flex;align-items:center;justify-content:space-between;width:100%;padding:0 22px;position:relative;z-index:2;gap:14px}
+.banner-wc-text{display:flex;flex-direction:column;gap:3px;flex:1}
+.banner-wc-tag{font-family:var(--font-display);font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:#FFD400}
+.banner-wc-title{font-family:var(--font-display);font-size:clamp(14px,1.5vw,17px);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:white;line-height:1.1}
+.banner-wc-days{font-family:var(--font-display);display:flex;flex-direction:column;align-items:center;justify-content:center;background:rgba(255,212,0,0.12);border:1.5px solid #FFD400;border-radius:8px;padding:6px 14px;flex-shrink:0}
+.banner-wc-days-num{font-size:22px;font-weight:700;color:#FFD400;line-height:1;font-variant-numeric:tabular-nums}
+.banner-wc-days-label{font-size:9px;font-weight:600;letter-spacing:1.5px;color:rgba(255,212,0,0.85);margin-top:2px;text-transform:uppercase}
+
 /* App Banner - Galácticos */
 .banner-app{background:linear-gradient(135deg,#DC052D 0%,#A00020 60%,#8B001A 100%);overflow:hidden}
 .banner-app::before{
@@ -189,7 +212,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .banner-app-text{display:flex;flex-direction:column;gap:3px}
 .banner-app-tag{font-family:var(--font-display);font-size:11px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;color:rgba(255,255,255,0.9)}
 .banner-app-title{font-family:var(--font-display);font-size:clamp(14px,1.5vw,17px);font-weight:700;letter-spacing:0.5px;text-transform:uppercase;color:white;line-height:1}
-.banner-app-btn{margin-top:6px;background:#0A1428;color:white;font-family:var(--font-display);font-size:10px;font-weight:600;letter-spacing:1.2px;padding:6px 12px;border-radius:3px;text-transform:uppercase;align-self:flex-start;transition:var(--transition)}
+.banner-app-btn{margin-top:6px;background:#0A1428;color:white;font-family:var(--font-display);font-size:10px;font-weight:600;letter-spacing:1.2px;padding:6px 12px;border-radius:3px;text-transform:uppercase;align-self:flex-start;transition:var(--transition);border:none;cursor:pointer}
 .banner-app-btn:hover{background:#152744}
 .banner-app-shield{width:54px;height:64px;flex-shrink:0;opacity:0.95}
 
@@ -203,7 +226,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .section-link svg{width:16px;height:16px}
 .news-tabs{display:flex;gap:4px;margin-bottom:24px;overflow-x:auto;padding-bottom:8px;scrollbar-width:none}
 .news-tabs::-webkit-scrollbar{display:none}
-.news-tab{font-family:var(--font-display);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px;padding:8px 16px;border-radius:4px;background:var(--fcb-card);border:1px solid var(--fcb-border);white-space:nowrap;cursor:pointer;transition:var(--transition)}
+.news-tab{font-family:var(--font-display);font-size:12px;font-weight:500;text-transform:uppercase;letter-spacing:1px;padding:8px 16px;border-radius:4px;background:var(--fcb-card);border:1px solid var(--fcb-border);white-space:nowrap;cursor:pointer;transition:var(--transition);color:inherit}
 .news-tab:hover{border-color:rgba(220,5,45,0.3)}
 .news-tab.active{background:var(--fcb-red);border-color:var(--fcb-red);color:white}
 .news-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:20px}
@@ -213,6 +236,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .news-card-img img{width:100%;height:100%;object-fit:cover;transition:transform 0.5s ease}
 .news-card:hover .news-card-img img{transform:scale(1.06)}
 .news-card-img .news-badge{position:absolute;top:12px;left:12px;font-family:var(--font-display);font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 10px;border-radius:3px;background:var(--fcb-red);color:white}
+.news-card-img .news-badge.wc{background:var(--wc-gold);color:#0A1F44}
 .news-card-body{padding:16px 18px 20px}
 .news-card-body h3{font-family:var(--font-display);font-size:17px;font-weight:600;line-height:1.25;margin-bottom:6px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .news-card-body p{font-size:13px;color:var(--fcb-gray);display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
@@ -252,7 +276,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .newsletter-form input{flex:1;padding:14px 18px;border-radius:6px;border:1px solid var(--fcb-border);background:var(--fcb-card);color:white;font-family:var(--font-body);font-size:14px;transition:var(--transition)}
 .newsletter-form input:focus{outline:none;border-color:var(--fcb-red);box-shadow:0 0 0 3px rgba(220,5,45,0.15)}
 .newsletter-form input::placeholder{color:var(--fcb-gray)}
-.newsletter-form button{background:var(--fcb-red);color:white;font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 28px;border-radius:6px;transition:var(--transition)}
+.newsletter-form button{background:var(--fcb-red);color:white;font-family:var(--font-display);font-size:14px;font-weight:600;text-transform:uppercase;letter-spacing:1px;padding:14px 28px;border-radius:6px;transition:var(--transition);cursor:pointer;border:none}
 .newsletter-form button:hover{background:var(--fcb-dark-red);transform:translateY(-1px)}
 
 /* === PARTNERS === */
@@ -265,185 +289,45 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 .partners-secondary img{height:20px;opacity:0.4;transition:var(--transition);filter:brightness(0) invert(1)}
 .partners-secondary img:hover{opacity:0.8}
 
-/* === GALÁCTICOS FOOTER === */
-.footer{
-  background:#0A1F44;
-  padding:0;
-  position:relative;
-  overflow:hidden;
-}
+/* === FOOTER === */
+.footer{background:#0A1F44;padding:0;position:relative;overflow:hidden}
 .footer-stripes{
   height:2px;
   background:linear-gradient(90deg,
-    transparent 0%,
-    #E11D2C 15%,
-    #1565C0 35%,
-    #FFD400 50%,
-    #1565C0 65%,
-    #E11D2C 85%,
-    transparent 100%);
+    transparent 0%,#E11D2C 15%,#1565C0 35%,#FFD400 50%,#1565C0 65%,#E11D2C 85%,transparent 100%);
   background-size:200% 100%;
   animation:stripeFlow 8s ease-in-out infinite;
   opacity:0.8;
 }
-@keyframes stripeFlow{
-  0%,100%{background-position:0% 50%}
-  50%{background-position:100% 50%}
-}
+@keyframes stripeFlow{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
 .footer::before{
-  content:'GFC';
-  position:absolute;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-55%);
-  font-family:var(--font-display);
-  font-size:clamp(220px,24vw,400px);
-  font-weight:700;
-  color:rgba(255,255,255,0.04);
-  letter-spacing:-12px;
-  white-space:nowrap;
-  pointer-events:none;
-  z-index:0;
-  line-height:1;
+  content:'GFC';position:absolute;top:50%;left:50%;transform:translate(-50%,-55%);
+  font-family:var(--font-display);font-size:clamp(220px,24vw,400px);font-weight:700;
+  color:rgba(255,255,255,0.04);letter-spacing:-12px;white-space:nowrap;pointer-events:none;z-index:0;line-height:1;
 }
-.footer-inner{
-  max-width:1400px;
-  margin:0 auto;
-  position:relative;
-  z-index:1;
-  display:grid;
-  grid-template-columns:1.4fr 1fr 1fr 1fr 1.4fr;
-  gap:48px;
-  padding:64px 40px 48px;
-}
+.footer-inner{max-width:1400px;margin:0 auto;position:relative;z-index:1;display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr 1.4fr;gap:48px;padding:64px 40px 48px}
 .footer-brand-col{display:flex;flex-direction:column;gap:24px}
-.footer-shield{
-  display:inline-flex;
-  align-items:center;
-  gap:14px;
-  align-self:flex-start;
-}
+.footer-shield{display:inline-flex;align-items:center;gap:14px;align-self:flex-start}
 .footer-shield-icon{width:54px;height:64px;flex-shrink:0}
-.footer-brand-text h3{
-  font-family:var(--font-display);
-  font-size:26px;
-  font-weight:700;
-  color:#FFFFFF;
-  letter-spacing:1.2px;
-  line-height:1;
-  margin-bottom:6px;
-}
-.footer-brand-text p{
-  font-family:var(--font-display);
-  font-size:11px;
-  font-weight:500;
-  color:#E11D2C;
-  letter-spacing:2.5px;
-  line-height:1.3;
-}
-.footer-desc{
-  font-size:14px;
-  color:rgba(255,255,255,0.7);
-  line-height:1.65;
-  max-width:280px;
-}
+.footer-brand-text h3{font-family:var(--font-display);font-size:26px;font-weight:700;color:#FFFFFF;letter-spacing:1.2px;line-height:1;margin-bottom:6px}
+.footer-brand-text p{font-family:var(--font-display);font-size:11px;font-weight:500;color:#E11D2C;letter-spacing:2.5px;line-height:1.3}
+.footer-desc{font-size:14px;color:rgba(255,255,255,0.7);line-height:1.65;max-width:280px}
 .footer-social{display:flex;gap:10px}
-.footer-social a{
-  width:40px;height:40px;
-  border-radius:50%;
-  border:1.5px solid rgba(225,29,44,0.55);
-  display:flex;align-items:center;justify-content:center;
-  color:#E11D2C;
-  transition:var(--transition);
-}
-.footer-social a:hover{
-  background:#E11D2C;
-  color:white;
-  border-color:#E11D2C;
-  transform:translateY(-2px);
-  box-shadow:0 6px 18px rgba(225,29,44,0.4);
-}
+.footer-social a{width:40px;height:40px;border-radius:50%;border:1.5px solid rgba(225,29,44,0.55);display:flex;align-items:center;justify-content:center;color:#E11D2C;transition:var(--transition)}
+.footer-social a:hover{background:#E11D2C;color:white;border-color:#E11D2C;transform:translateY(-2px);box-shadow:0 6px 18px rgba(225,29,44,0.4)}
 .footer-social svg{width:16px;height:16px}
-.footer-col-g h4{
-  font-family:var(--font-display);
-  font-size:14px;
-  font-weight:700;
-  letter-spacing:2.5px;
-  color:#E11D2C;
-  margin-bottom:24px;
-}
-.footer-col-g a{
-  display:block;
-  font-size:14.5px;
-  color:rgba(255,255,255,0.85);
-  padding:6px 0;
-  transition:var(--transition);
-}
+.footer-col-g h4{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:2.5px;color:#E11D2C;margin-bottom:24px}
+.footer-col-g a{display:block;font-size:14.5px;color:rgba(255,255,255,0.85);padding:6px 0;transition:var(--transition)}
 .footer-col-g a:hover{color:#E11D2C;transform:translateX(3px)}
-.footer-newsletter h4{
-  font-family:var(--font-display);
-  font-size:14px;
-  font-weight:700;
-  letter-spacing:2.5px;
-  color:#E11D2C;
-  margin-bottom:18px;
-}
-.footer-newsletter p{
-  font-size:14px;
-  color:rgba(255,255,255,0.78);
-  line-height:1.6;
-  margin-bottom:22px;
-  max-width:300px;
-}
-.footer-newsletter-form{
-  display:flex;
-  align-items:center;
-  background:rgba(255,255,255,0.04);
-  border:1.5px solid rgba(225,29,44,0.5);
-  border-radius:999px;
-  padding:4px 4px 4px 22px;
-  max-width:340px;
-  transition:var(--transition);
-}
+.footer-newsletter h4{font-family:var(--font-display);font-size:14px;font-weight:700;letter-spacing:2.5px;color:#E11D2C;margin-bottom:18px}
+.footer-newsletter p{font-size:14px;color:rgba(255,255,255,0.78);line-height:1.6;margin-bottom:22px;max-width:300px}
+.footer-newsletter-form{display:flex;align-items:center;background:rgba(255,255,255,0.04);border:1.5px solid rgba(225,29,44,0.5);border-radius:999px;padding:4px 4px 4px 22px;max-width:340px;transition:var(--transition)}
 .footer-newsletter-form:focus-within{border-color:#E11D2C;box-shadow:0 0 0 3px rgba(225,29,44,0.15)}
-.footer-newsletter-form input{
-  flex:1;
-  min-width:0;
-  background:transparent;
-  border:none;
-  outline:none;
-  color:white;
-  font-family:var(--font-body);
-  font-size:14px;
-  padding:10px 0;
-}
+.footer-newsletter-form input{flex:1;min-width:0;background:transparent;border:none;outline:none;color:white;font-family:var(--font-body);font-size:14px;padding:10px 0}
 .footer-newsletter-form input::placeholder{color:rgba(255,255,255,0.4)}
-.footer-newsletter-form button{
-  background:#E11D2C;
-  color:white;
-  font-family:var(--font-display);
-  font-size:13px;
-  font-weight:700;
-  letter-spacing:2px;
-  padding:10px 22px;
-  border-radius:999px;
-  transition:var(--transition);
-  white-space:nowrap;
-}
+.footer-newsletter-form button{background:#E11D2C;color:white;font-family:var(--font-display);font-size:13px;font-weight:700;letter-spacing:2px;padding:10px 22px;border-radius:999px;transition:var(--transition);white-space:nowrap;border:none;cursor:pointer}
 .footer-newsletter-form button:hover{background:#B0101D;transform:translateY(-1px)}
-
-.footer-bottom{
-  position:relative;z-index:1;
-  border-top:1px solid rgba(255,255,255,0.08);
-  max-width:1400px;
-  margin:0 auto;
-  padding:22px 40px 26px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:16px;
-}
+.footer-bottom{position:relative;z-index:1;border-top:1px solid rgba(255,255,255,0.08);max-width:1400px;margin:0 auto;padding:22px 40px 26px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px}
 .footer-copy{font-size:13px;color:rgba(255,255,255,0.55);margin:0}
 .footer-bottom-links{display:flex;gap:24px;flex-wrap:wrap}
 .footer-bottom-links a{font-size:13px;color:rgba(255,255,255,0.55);transition:var(--transition)}
@@ -461,7 +345,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   .footer-bottom-links{justify-content:center;gap:16px}
 }
 
-.scroll-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--fcb-red);color:white;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;z-index:90;opacity:0;transform:translateY(20px);transition:var(--transition);box-shadow:0 4px 16px rgba(220,5,45,0.4)}
+.scroll-top{position:fixed;bottom:24px;right:24px;width:44px;height:44px;border-radius:50%;background:var(--fcb-red);color:white;display:flex;align-items:center;justify-content:center;font-size:20px;cursor:pointer;z-index:90;opacity:0;transform:translateY(20px);transition:var(--transition);box-shadow:0 4px 16px rgba(220,5,45,0.4);border:none}
 .scroll-top.visible{opacity:1;transform:translateY(0)}
 .scroll-top:hover{background:var(--fcb-dark-red);transform:translateY(-2px)}
 
@@ -469,21 +353,23 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 @media(max-width:1024px){
   .nav{display:none}.hamburger{display:flex}.hero-slide{aspect-ratio:16/9}
   .banners{grid-template-columns:1fr}.fan-grid{grid-template-columns:1fr 1fr}
-  .footer-grid{grid-template-columns:repeat(3,1fr)}.news-ticker-inner{grid-template-columns:1fr}
-  .match-plan-btn{position:static;margin-top:16px}
+  .news-ticker-inner{grid-template-columns:1fr}
   .countdown-top{flex-wrap:wrap;justify-content:center}
 }
 @media(max-width:768px){
   .topbar{display:none}.hero-slide{aspect-ratio:4/3}.hero-content{padding:24px}.hero-title{font-size:22px}
   .news-grid{grid-template-columns:1fr}.fan-grid{grid-template-columns:1fr}.trophy-item{min-width:100px}
-  .newsletter-form{flex-direction:column}.footer-grid{grid-template-columns:1fr 1fr}
-  .footer-bottom{flex-direction:column;gap:16px;text-align:center}.partners-main{gap:24px;flex-wrap:wrap}
+  .newsletter-form{flex-direction:column}
+  .partners-main{gap:24px;flex-wrap:wrap}
   .match-carousel{overflow-x:auto;scrollbar-width:none}.match-carousel::-webkit-scrollbar{display:none}
-  .countdown-num{font-size:36px!important}
 }
 
 @keyframes fadeInUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
 .animate-in{animation:fadeInUp 0.6s ease forwards}
+
+/* Subtle pulse for live countdown */
+@keyframes countdownPulse{0%,100%{text-shadow:0 0 30px rgba(220,5,45,0.3)}50%{text-shadow:0 0 40px rgba(220,5,45,0.5)}}
+.countdown-num{animation:countdownPulse 2s ease-in-out infinite}
 </style>
 </head>
 <body>
@@ -533,7 +419,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
     <a href="#" class="active">Inicio</a>
     <a href="#">Equipo</a>
     <a href="#">Calendario</a>
-    <a href="#">Historia</a>
+    <a href="#">Mundial 2026</a>
     <a href="#">Palmarés</a>
     <a href="#">Galácticos TV</a>
     <a href="#">Tienda</a>
@@ -553,7 +439,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   <a href="#" class="active">Inicio</a>
   <a href="#">Equipo</a>
   <a href="#">Calendario</a>
-  <a href="#">Historia</a>
+  <a href="#">Mundial 2026</a>
   <a href="#">Palmarés</a>
   <a href="#">Galácticos TV</a>
   <a href="#">Tienda</a>
@@ -564,57 +450,53 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 <section class="hero">
   <div class="hero-track" id="heroTrack">
     <div class="hero-slide active">
-      <img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:7,c_fill,g_custom,w_1920/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/17-fcb-psg-260506-mel.jpg" alt="">
+      <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1920&q=80&auto=format&fit=crop" alt="Estadio del Mundial FIFA 2026">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag">Champions League</span><span class="hero-tag outline">#FCBPSG</span></div>
-        <h2 class="hero-title">Una noche eléctrica en el Allianz Arena</h2>
-        <p class="hero-subtitle">El Galácticos lo dejó todo en la semifinal de la Champions League ante el PSG</p>
-        <a href="#" class="hero-cta">Leer artículo</a>
+        <div class="hero-tags"><span class="hero-tag gold">Mundial FIFA 2026</span><span class="hero-tag outline">11 jun → 19 jul</span></div>
+        <h2 class="hero-title">Camino al Mundial: Estados Unidos, México y Canadá</h2>
+        <p class="hero-subtitle">El torneo más grande de la historia: 48 selecciones, 16 ciudades, una sola gloria.</p>
+        <a href="#" class="hero-cta">Ver calendario</a>
       </div>
     </div>
     <div class="hero-slide">
-      <img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:7,c_fill,g_custom,w_1920/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/12-fcb-psg-260506-mel.jpg" alt="">
+      <img src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1920&q=80&auto=format&fit=crop" alt="Trofeo UEFA Champions League">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag">Goleador</span><span class="hero-tag outline">Harry Kane</span></div>
-        <h2 class="hero-title">Kane sigue marcando historia con la camiseta del Galácticos</h2>
-        <p class="hero-subtitle">El delantero inglés vuelve a aparecer en los grandes momentos europeos</p>
-        <div class="hero-match">
-          <img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="FCB">
-          <span class="hero-vs">VS</span>
-          <img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390419/cms/public/images/fcbayern-com/logos/international/paris-saint-germain.png" alt="PSG">
-        </div>
+        <div class="hero-tags"><span class="hero-tag">Champions League</span><span class="hero-tag outline">Final 30/05</span></div>
+        <h2 class="hero-title">La Orejona espera: la gran noche de Europa</h2>
+        <p class="hero-subtitle">Galácticos peleó hasta el último minuto su pase a la final. Una temporada que quedará en la memoria.</p>
+        <a href="#" class="hero-cta">Leer crónica</a>
       </div>
     </div>
     <div class="hero-slide">
-      <img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:7,c_fill,g_custom,w_1920/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/01-fcb-psg-260506-mel.jpg" alt="">
+      <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1920&q=80&auto=format&fit=crop" alt="Estadio repleto de afición">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag">Allianz Arena</span><span class="hero-tag outline">Atmósfera</span></div>
-        <h2 class="hero-title">75.000 corazones rojos: la Allianz nunca duerme</h2>
-        <p class="hero-subtitle">El templo del fútbol bávaro vibró con su afición hasta el último minuto</p>
+        <div class="hero-tags"><span class="hero-tag">Estadio Cosmos</span><span class="hero-tag outline">Atmósfera</span></div>
+        <h2 class="hero-title">75.000 corazones rojos: la Galaxia nunca duerme</h2>
+        <p class="hero-subtitle">El templo del Galácticos vibró con su afición hasta el último segundo de la temporada.</p>
       </div>
     </div>
     <div class="hero-slide">
-      <img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:7,c_fill,g_custom,w_1920/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/15-fcb-psg-260506-mel.jpg" alt="">
+      <img src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1920&q=80&auto=format&fit=crop" alt="Selección celebrando con bandera">
       <div class="hero-overlay"></div>
       <div class="hero-content">
-        <div class="hero-tags"><span class="hero-tag">Equipo</span><span class="hero-tag outline">Mia san mia</span></div>
-        <h2 class="hero-title">El espíritu del Rekordmeister: orgullo, garra y bandera</h2>
-        <p class="hero-subtitle">Un equipo que pelea hasta el último segundo por su escudo</p>
+        <div class="hero-tags"><span class="hero-tag gold">Selecciones</span><span class="hero-tag outline">Camino a USA 2026</span></div>
+        <h2 class="hero-title">10 galácticos convocados con sus selecciones para el Mundial</h2>
+        <p class="hero-subtitle">El orgullo de ver el escudo del club en el escenario más grande del fútbol.</p>
       </div>
     </div>
   </div>
   <div class="hero-arrows">
-    <button class="hero-arrow" onclick="changeSlide(-1)">&#8249;</button>
-    <button class="hero-arrow" onclick="changeSlide(1)">&#8250;</button>
+    <button class="hero-arrow" onclick="changeSlide(-1)" aria-label="Anterior">&#8249;</button>
+    <button class="hero-arrow" onclick="changeSlide(1)" aria-label="Siguiente">&#8250;</button>
   </div>
   <div class="hero-dots" id="heroDots">
-    <button class="hero-dot active" onclick="goToSlide(0)"></button>
-    <button class="hero-dot" onclick="goToSlide(1)"></button>
-    <button class="hero-dot" onclick="goToSlide(2)"></button>
-    <button class="hero-dot" onclick="goToSlide(3)"></button>
+    <button class="hero-dot active" onclick="goToSlide(0)" aria-label="Slide 1"></button>
+    <button class="hero-dot" onclick="goToSlide(1)" aria-label="Slide 2"></button>
+    <button class="hero-dot" onclick="goToSlide(2)" aria-label="Slide 3"></button>
+    <button class="hero-dot" onclick="goToSlide(3)" aria-label="Slide 4"></button>
   </div>
 </section>
 
@@ -622,16 +504,16 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 <div class="news-ticker">
   <div class="news-ticker-inner">
     <div class="ticker-card active-ticker">
-      <div class="ticker-card-img"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_4:3,c_fill,g_custom,w_512/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/17-fcb-psg-260506-mel.jpg" alt=""></div>
-      <div class="ticker-card-text">El Galácticos sigue vivo en una noche épica de Champions</div>
+      <div class="ticker-card-img"><img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=512&q=80&auto=format&fit=crop" alt=""></div>
+      <div class="ticker-card-text">Mundial 2026: la cuenta atrás más esperada empieza ahora</div>
     </div>
     <div class="ticker-card">
       <div class="ticker-card-img"><img src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=512&q=80&auto=format&fit=crop" alt=""></div>
-      <div class="ticker-card-text">La Champions League: el sueño de cada equipo europeo</div>
+      <div class="ticker-card-text">UEFA Champions League: el sueño de cada club europeo</div>
     </div>
     <div class="ticker-card">
-      <div class="ticker-card-img"><img src="https://images.unsplash.com/photo-1659990370632-28bbe6e355c6?w=512&q=80&auto=format&fit=crop" alt=""></div>
-      <div class="ticker-card-text">Mundial: cuando una selección hace temblar a un país entero</div>
+      <div class="ticker-card-img"><img src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=512&q=80&auto=format&fit=crop" alt=""></div>
+      <div class="ticker-card-text">Galácticos convoca a 10 jugadores para el Mundial FIFA 2026</div>
     </div>
   </div>
 </div>
@@ -639,66 +521,67 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 <!-- MATCH CENTER: COUNTDOWN + CAROUSEL -->
 <section class="match-center">
   <div class="countdown-wrapper">
-    <div class="countdown-label">Próximo Partido</div>
+    <div class="countdown-label">Mundial FIFA 2026 · Estados Unidos · México · Canadá</div>
+    <div class="countdown-sublabel" id="countdownEvent">14 de junio · Inicio de la jornada estelar</div>
     <div class="countdown-top">
-      <div class="countdown-row">
-        <div class="countdown-block"><div class="countdown-num" id="cd-days">07</div><div class="countdown-unit">Días</div></div>
+      <div class="countdown-row" role="timer" aria-live="polite" aria-label="Cuenta atrás al Mundial">
+        <div class="countdown-block"><div class="countdown-num" id="cd-days">--</div><div class="countdown-unit">Días</div></div>
         <div class="countdown-sep">:</div>
-        <div class="countdown-block"><div class="countdown-num" id="cd-hours">18</div><div class="countdown-unit">Hrs</div></div>
+        <div class="countdown-block"><div class="countdown-num" id="cd-hours">--</div><div class="countdown-unit">Hrs</div></div>
         <div class="countdown-sep">:</div>
-        <div class="countdown-block"><div class="countdown-num" id="cd-mins">59</div><div class="countdown-unit">Min</div></div>
+        <div class="countdown-block"><div class="countdown-num" id="cd-mins">--</div><div class="countdown-unit">Min</div></div>
         <div class="countdown-sep">:</div>
-        <div class="countdown-block"><div class="countdown-num" id="cd-secs">00</div><div class="countdown-unit">Seg</div></div>
+        <div class="countdown-block"><div class="countdown-num" id="cd-secs">--</div><div class="countdown-unit">Seg</div></div>
       </div>
-      <button class="match-plan-btn">Plan de partido</button>
+      <button class="match-plan-btn" type="button">Plan de partido</button>
     </div>
     <!-- Match Carousel -->
     <div class="match-carousel-wrap">
       <div class="match-carousel" id="matchCarousel">
         <!-- Past: FCB 4:0 SCF -->
         <div class="match-card">
-          <div class="match-card-top">Bundesliga</div>
+          <div class="match-card-top">Liga · J37</div>
           <div class="match-card-body">
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="FCB"></div></div>
+            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="GFC"></div></div>
             <div class="match-score">4 : 0<span class="match-score-sub">(2:0)</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/freiburg.png" alt="SCF"></div></div>
+            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/freiburg.png" alt="RIV"></div></div>
           </div>
         </div>
-        <!-- Next: Bundesliga -->
+        <!-- Next: Final de Liga -->
         <div class="match-card next">
-          <div class="match-card-top">Bundesliga</div>
+          <div class="match-card-top">Liga · Última Jornada</div>
           <div class="match-card-body">
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="FCB"></div></div>
-            <div class="match-date">sáb 04/04<span>08:30 GMT-5</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/schalke.png" alt="S04"></div></div>
+            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="GFC"></div></div>
+            <div class="match-date">sáb 23/05<span>15:30 GMT-5</span></div>
+            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/schalke.png" alt="ORI"></div></div>
           </div>
         </div>
-        <!-- UCL: RMA vs FCB -->
+        <!-- Final UCL -->
         <div class="match-card">
-          <div class="match-card-top">Liga de Campeones</div>
+          <div class="match-card-top">Final · Liga de Campeones</div>
           <div class="match-card-body">
             <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/international/real_madrid.png" alt="RMA"></div></div>
-            <div class="match-date">mar 07/04<span>14:00 GMT-5</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="FCB"></div></div>
+            <div class="match-date">sáb 30/05<span>14:00 GMT-5</span></div>
+            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="GFC"></div></div>
           </div>
         </div>
-        <!-- Past: BVB 1:3 FCB -->
+        <!-- Mundial debut -->
         <div class="match-card">
-          <div class="match-card-top">Bundesliga</div>
+          <div class="match-card-top">Mundial FIFA 2026</div>
           <div class="match-card-body">
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/dortmund.png" alt="BVB"></div></div>
-            <div class="match-score">1 : 3<span class="match-score-sub">(0:2)</span></div>
-            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1765190623/cms/public/images/fcbayern-com/logos/bundesliga/fcb-logo.png" alt="FCB"></div></div>
+            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/dortmund.png" alt="DEU"></div></div>
+            <div class="match-date">dom 14/06<span>12:00 GMT-5</span></div>
+            <div class="match-team"><div class="match-team-logo"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_1:1,c_fill,g_custom,w_64/v1601390405/cms/public/images/fcbayern-com/logos/bundesliga/freiburg.png" alt="CUW"></div></div>
           </div>
         </div>
       </div>
       <div class="match-nav">
-        <button class="match-nav-arrow" onclick="scrollMatches(-1)">&#8249;</button>
-        <button class="match-nav-dot" data-mi="0"></button>
-        <button class="match-nav-dot active" data-mi="1"></button>
-        <button class="match-nav-dot" data-mi="2"></button>
-        <button class="match-nav-dot" data-mi="3"></button>
-        <button class="match-nav-arrow" onclick="scrollMatches(1)">&#8250;</button>
+        <button class="match-nav-arrow" onclick="scrollMatches(-1)" aria-label="Anterior">&#8249;</button>
+        <button class="match-nav-dot" data-mi="0" aria-label="Partido 1"></button>
+        <button class="match-nav-dot active" data-mi="1" aria-label="Partido 2"></button>
+        <button class="match-nav-dot" data-mi="2" aria-label="Partido 3"></button>
+        <button class="match-nav-dot" data-mi="3" aria-label="Partido 4"></button>
+        <button class="match-nav-arrow" onclick="scrollMatches(1)" aria-label="Siguiente">&#8250;</button>
       </div>
     </div>
   </div>
@@ -711,17 +594,21 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
     <img src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=900&q=80&auto=format&fit=crop" alt="Champions League" loading="lazy">
     <div class="banner-overlay"></div>
     <div class="banner-content">
-      <div class="banner-tag">Últimas Noticias</div>
+      <div class="banner-tag">Camino a la Final · 30/05</div>
       <div class="banner-title">UEFA Champions League</div>
     </div>
   </div>
-  <!-- Banner 2: Mundial -->
-  <div class="banner-item">
-    <img src="https://images.unsplash.com/photo-1659990370632-28bbe6e355c6?w=900&q=80&auto=format&fit=crop" alt="Mundial FIFA" loading="lazy">
-    <div class="banner-overlay"></div>
-    <div class="banner-content">
-      <div class="banner-tag">FIFA World Cup</div>
-      <div class="banner-title">Lo más destacado del Mundial</div>
+  <!-- Banner 2: World Cup countdown -->
+  <div class="banner-item banner-wc">
+    <div class="banner-wc-content">
+      <div class="banner-wc-text">
+        <div class="banner-wc-tag">FIFA World Cup 2026</div>
+        <div class="banner-wc-title">USA · México · Canadá</div>
+      </div>
+      <div class="banner-wc-days">
+        <span class="banner-wc-days-num" id="wcDaysBanner">--</span>
+        <span class="banner-wc-days-label">Días</span>
+      </div>
     </div>
   </div>
   <!-- Banner 3: App Galácticos FC -->
@@ -748,13 +635,12 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   </div>
   <div class="news-tabs" id="newsTabs">
     <button class="news-tab active" data-tab="todos">Todos</button>
-    <button class="news-tab" data-tab="noticias">Noticias</button>
+    <button class="news-tab" data-tab="mundial">Mundial 2026</button>
     <button class="news-tab" data-tab="club">Club</button>
-    <button class="news-tab" data-tab="femenino">Femenino</button>
-    <button class="news-tab" data-tab="campus">Campus</button>
-    <button class="news-tab" data-tab="tv">Galácticos TV</button>
-    <button class="news-tab" data-tab="bundesliga">Bundesliga</button>
     <button class="news-tab" data-tab="champions">Liga de Campeones</button>
+    <button class="news-tab" data-tab="liga">Liga</button>
+    <button class="news-tab" data-tab="femenino">Femenino</button>
+    <button class="news-tab" data-tab="tv">Galácticos TV</button>
   </div>
   <div class="news-grid" id="newsGrid"></div>
 </section>
@@ -764,24 +650,24 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   <div class="section-header"><h2 class="section-title">El fútbol mundial</h2></div>
   <div class="fan-grid">
     <div class="fan-card">
-      <img src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1024&q=80&auto=format&fit=crop" alt="Champions League trophy" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1024&q=80&auto=format&fit=crop" alt="Estadio del Mundial" loading="lazy">
+      <div class="fan-card-overlay">
+        <span class="fan-card-label">FIFA World Cup 2026</span>
+        <span class="fan-card-title">16 sedes · 48 selecciones · Una corona</span>
+      </div>
+    </div>
+    <div class="fan-card">
+      <img src="https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1024&q=80&auto=format&fit=crop" alt="Champions League" loading="lazy">
       <div class="fan-card-overlay">
         <span class="fan-card-label">UEFA Champions League</span>
-        <span class="fan-card-title">Los grandes equipos de Europa</span>
+        <span class="fan-card-title">La Orejona, el sueño de Europa</span>
       </div>
     </div>
     <div class="fan-card">
-      <img src="https://images.unsplash.com/photo-1667983090922-3a996b026a26?w=1024&q=80&auto=format&fit=crop" alt="Football star with trophies" loading="lazy">
+      <img src="https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1024&q=80&auto=format&fit=crop" alt="Selección celebrando" loading="lazy">
       <div class="fan-card-overlay">
-        <span class="fan-card-label">Leyendas</span>
-        <span class="fan-card-title">Las estrellas del fútbol mundial</span>
-      </div>
-    </div>
-    <div class="fan-card">
-      <img src="https://images.unsplash.com/photo-1659990370632-28bbe6e355c6?w=1024&q=80&auto=format&fit=crop" alt="World Cup celebration" loading="lazy">
-      <div class="fan-card-overlay">
-        <span class="fan-card-label">FIFA World Cup</span>
-        <span class="fan-card-title">La gloria de la Copa del Mundo</span>
+        <span class="fan-card-label">Selecciones</span>
+        <span class="fan-card-title">El orgullo de vestir tu bandera</span>
       </div>
     </div>
   </div>
@@ -792,9 +678,9 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   <div class="section" style="max-width:1320px;margin:0 auto">
     <div class="section-header"><h2 class="section-title">Familia del Galácticos</h2></div>
     <div class="fan-grid">
-      <div class="fan-card"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:9,c_fill,g_custom,w_1024/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/01-fcb-psg-260506-mel.jpg" alt=""><div class="fan-card-overlay"><span class="fan-card-label">Hazte socio</span><span class="fan-card-title">¡Entra a formar parte de la familia del FC Bayern!</span></div></div>
-      <div class="fan-card"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:9,c_fill,g_custom,w_1024/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/03-fcb-psg-260506-mel.jpg" alt=""><div class="fan-card-overlay"><span class="fan-card-label">Afición</span><span class="fan-card-title">La Südkurve, el corazón rojo del Bayern</span></div></div>
-      <div class="fan-card"><img src="https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:9,c_fill,g_custom,w_1024/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/19-fcb-psg-260506-mel.jpg" alt=""><div class="fan-card-overlay"><span class="fan-card-label">Clubs de fans</span><span class="fan-card-title">Encuentra tu Fan Club</span></div></div>
+      <div class="fan-card"><img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1024&q=80&auto=format&fit=crop" alt="Afición en el estadio" loading="lazy"><div class="fan-card-overlay"><span class="fan-card-label">Hazte socio</span><span class="fan-card-title">¡Forma parte de la familia Galáctica!</span></div></div>
+      <div class="fan-card"><img src="https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1024&q=80&auto=format&fit=crop" alt="Bufandas en grada" loading="lazy"><div class="fan-card-overlay"><span class="fan-card-label">Afición</span><span class="fan-card-title">La grada sur, el corazón rojo del club</span></div></div>
+      <div class="fan-card"><img src="https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=1024&q=80&auto=format&fit=crop" alt="Peñas de aficionados" loading="lazy"><div class="fan-card-overlay"><span class="fan-card-label">Peñas oficiales</span><span class="fan-card-title">Encuentra tu peña Galáctica</span></div></div>
     </div>
   </div>
 </section>
@@ -814,7 +700,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 <section class="newsletter-section">
   <div class="newsletter-inner">
     <h2>Boletín de noticias</h2>
-    <p>Recibe las últimas noticias del Galácticos directamente en tu bandeja de entrada.</p>
+    <p>Recibe las últimas noticias del Galácticos y el Mundial 2026 directamente en tu bandeja de entrada.</p>
     <div class="newsletter-form">
       <input type="email" placeholder="Dirección de e-mail" aria-label="Email">
       <button type="button" onclick="subscribeNewsletter()">Suscríbase</button>
@@ -826,7 +712,7 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
 <!-- PARTNERS -->
 <section class="partners-section">
   <div style="max-width:1320px;margin:0 auto">
-    <div class="partners-label">Colaborador</div>
+    <div class="partners-label">Colaboradores</div>
     <div class="partners-main">
       <img src="https://img.fcbayern.com/image/upload/v1645623001/cms/public/images/frauen/administration/partner-logos/Telekom.svg" alt="Telekom">
       <img src="https://img.fcbayern.com/image/upload/v1688631272/cms/public/images/frauen/administration/partner-logos/neu-Adidas.svg" alt="Adidas">
@@ -919,118 +805,290 @@ button{border:none;cursor:pointer;font-family:inherit;background:none;color:inhe
   </div>
 </footer>
 
-<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593;</button>
+<button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" aria-label="Volver arriba">&#8593;</button>
 
 <script>
-// ===== COUNTDOWN =====
-(function(){
-  const now=new Date();
-  const target=new Date(now.getTime()+7*24*3600000+18*3600000+59*60000);
-  function tick(){
-    const d=target-new Date();
-    if(d<=0)return;
-    const dd=Math.floor(d/86400000);
-    const hh=Math.floor(d%86400000/3600000);
-    const mm=Math.floor(d%3600000/60000);
-    const ss=Math.floor(d%60000/1000);
-    document.getElementById('cd-days').textContent=String(dd).padStart(2,'0');
-    document.getElementById('cd-hours').textContent=String(hh).padStart(2,'0');
-    document.getElementById('cd-mins').textContent=String(mm).padStart(2,'0');
-    document.getElementById('cd-secs').textContent=String(ss).padStart(2,'0');
-  }
-  tick();setInterval(tick,1000);
-})();
+'use strict';
 
-// ===== MATCH CAROUSEL =====
-let matchPos=0;
-function scrollMatches(dir){
-  const c=document.getElementById('matchCarousel');
-  const w=c.querySelector('.match-card').offsetWidth+12;
-  const max=c.scrollWidth-c.offsetWidth;
-  matchPos=Math.max(0,Math.min(matchPos+dir*w,max));
-  c.scrollTo({left:matchPos,behavior:'smooth'});
-  const dots=document.querySelectorAll('.match-nav-dot');
-  const idx=Math.round(matchPos/w);
-  dots.forEach((d,i)=>d.classList.toggle('active',i===idx));
+/* ==========================================================================
+   GALÁCTICOS FC · Camino al Mundial FIFA 2026
+   Cuenta atrás real al 14 de junio de 2026 (jornada estelar del Mundial)
+   ========================================================================== */
+
+/* ---------- Countdown (precise, timezone-safe) ---------- */
+// Target: 14 de junio 2026, 17:00 UTC
+// = 12:00 PM hora de Perú (GMT-5)
+// = 1:00 PM ET (kickoff Germany vs Curaçao en Houston)
+// = 19:00 CEST (Alemania)
+const WC_TARGET = new Date('2026-06-14T17:00:00Z');
+
+const $ = (id) => document.getElementById(id);
+const pad = (n) => String(Math.max(0, n)).padStart(2, '0');
+
+function updateCountdown() {
+  const diff = WC_TARGET.getTime() - Date.now();
+
+  // Banner (just days)
+  const banner = $('wcDaysBanner');
+
+  if (diff <= 0) {
+    ['cd-days','cd-hours','cd-mins','cd-secs'].forEach(id => {
+      const el = $(id); if (el) el.textContent = '00';
+    });
+    const ev = $('countdownEvent');
+    if (ev) ev.textContent = '¡La jornada del Mundial está en marcha!';
+    if (banner) banner.textContent = '0';
+    return false; // stop ticking
+  }
+
+  const days  = Math.floor(diff / 86_400_000);
+  const hours = Math.floor((diff % 86_400_000) / 3_600_000);
+  const mins  = Math.floor((diff % 3_600_000) / 60_000);
+  const secs  = Math.floor((diff % 60_000) / 1_000);
+
+  $('cd-days').textContent  = pad(days);
+  $('cd-hours').textContent = pad(hours);
+  $('cd-mins').textContent  = pad(mins);
+  $('cd-secs').textContent  = pad(secs);
+  if (banner) banner.textContent = days;
+
+  return true;
 }
 
-// ===== NEWS =====
-const newsData=[
-  {img:'https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:9,c_fill,g_custom,w_1024/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/17-fcb-psg-260506-mel.jpg',badge:'Champions League',title:'Una semifinal eléctrica: Galácticos sigue vivo en Europa',desc:'Una noche imborrable que se queda en la memoria de la afición.',date:'06 May 2026',cat:['todos','noticias','champions']},
-  {img:'https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1024&q=80&auto=format&fit=crop',badge:'UEFA',title:'El trofeo más codiciado: la magia de la Champions League',desc:'La Orejona, símbolo eterno de los grandes equipos europeos.',date:'06 May 2026',cat:['todos','noticias','champions']},
-  {img:'https://images.unsplash.com/photo-1659990370632-28bbe6e355c6?w=1024&q=80&auto=format&fit=crop',badge:'Mundial',title:'Cuando un país entero se levanta: la pasión del Mundial',desc:'Banderas, lágrimas y gloria en la cita más grande del fútbol.',date:'06 May 2026',cat:['todos','noticias']},
-  {img:'https://images.unsplash.com/photo-1767916732786-a83902ffc25c?w=1024&q=80&auto=format&fit=crop',badge:'Atmósfera',title:'Estadios que rugen: la pasión que mueve al fútbol mundial',desc:'Las gradas como sexto jugador de los grandes equipos.',date:'06 May 2026',cat:['todos','noticias']},
-  {img:'https://images.unsplash.com/photo-1667983090922-3a996b026a26?w=1024&q=80&auto=format&fit=crop',badge:'Leyenda',title:'Las estrellas que escriben historia con sus trofeos',desc:'Carreras llenas de éxitos en los grandes escenarios del fútbol.',date:'05 May 2026',cat:['todos','club']},
-  {img:'https://img.fcbayern.com/image/upload/f_auto/q_auto/ar_16:9,c_fill,g_custom,w_1024/v1778100701/cms/public/images/fcbayern-com/homepage/Saison-25-26/Galerien/Spiele/fcb-psg/15-fcb-psg-260506-mel.jpg',badge:'Equipo',title:'Garra y entrega: el espíritu que define a un campeón',desc:'Pelear hasta el último segundo por el escudo y la afición.',date:'05 May 2026',cat:['todos','noticias','champions']},
+(function startCountdown(){
+  updateCountdown();
+  // Use setInterval, but check return value to allow self-stopping
+  const t = setInterval(() => {
+    if (!updateCountdown()) clearInterval(t);
+  }, 1000);
+})();
+
+/* ---------- Match carousel ---------- */
+let matchPos = 0;
+function scrollMatches(dir) {
+  const c = $('matchCarousel');
+  if (!c) return;
+  const card = c.querySelector('.match-card');
+  if (!card) return;
+  const w = card.offsetWidth + 12;
+  const max = c.scrollWidth - c.offsetWidth;
+  matchPos = Math.max(0, Math.min(matchPos + dir * w, max));
+  c.scrollTo({ left: matchPos, behavior: 'smooth' });
+  const dots = document.querySelectorAll('.match-nav-dot');
+  const idx = Math.round(matchPos / w);
+  dots.forEach((d, i) => d.classList.toggle('active', i === idx));
+}
+
+/* ---------- News ---------- */
+const newsData = [
+  { img:'https://images.unsplash.com/photo-1551958219-acbc608c6377?w=1024&q=80&auto=format&fit=crop',
+    badge:'Mundial 2026', badgeClass:'wc',
+    title:'Faltan menos de 30 días para el sueño: arranca el Mundial FIFA 2026',
+    desc:'48 selecciones, 16 sedes y 104 partidos repartidos entre USA, México y Canadá.',
+    date:'17 May 2026', cat:['todos','mundial'] },
+
+  { img:'https://images.unsplash.com/photo-1522778034537-20a2486be803?w=1024&q=80&auto=format&fit=crop',
+    badge:'Convocatoria', badgeClass:'wc',
+    title:'10 galácticos convocados con sus selecciones para el Mundial',
+    desc:'El club bate récord de internacionales convocados para una Copa del Mundo.',
+    date:'16 May 2026', cat:['todos','mundial','club'] },
+
+  { img:'https://images.unsplash.com/photo-1560003991-545650ee5f07?w=1024&q=80&auto=format&fit=crop',
+    badge:'Champions League',
+    title:'Camino a la final: una temporada europea para enmarcar',
+    desc:'El Galácticos firma una de las mejores Champions de su historia reciente.',
+    date:'15 May 2026', cat:['todos','champions'] },
+
+  { img:'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1024&q=80&auto=format&fit=crop',
+    badge:'Estadio Cosmos',
+    title:'La grada rugió: 75.000 voces en una noche para la historia',
+    desc:'La afición galáctica empuja al equipo hasta el último segundo.',
+    date:'14 May 2026', cat:['todos','club'] },
+
+  { img:'https://images.unsplash.com/photo-1518604666860-9ed391f76460?w=1024&q=80&auto=format&fit=crop',
+    badge:'Liga',
+    title:'A un partido del título: la última jornada decide la liga',
+    desc:'El sábado 23 de mayo se cierra una temporada épica en casa.',
+    date:'13 May 2026', cat:['todos','liga'] },
+
+  { img:'https://images.unsplash.com/photo-1606925797300-0b35e9d1794e?w=1024&q=80&auto=format&fit=crop',
+    badge:'Femenino',
+    title:'Las Galácticas, a un paso de su primer título europeo',
+    desc:'La sección femenina disputa la final continental el próximo fin de semana.',
+    date:'12 May 2026', cat:['todos','femenino'] }
 ];
-function renderNews(f='todos'){
-  const g=document.getElementById('newsGrid');g.innerHTML='';
-  newsData.filter(n=>n.cat.includes(f)).forEach((n,i)=>{
-    const c=document.createElement('div');c.className='news-card animate-in';c.style.animationDelay=`${i*.08}s`;
-    c.innerHTML=`<div class="news-card-img"><img src="${n.img}" alt="" loading="lazy"><span class="news-badge">${n.badge}</span></div><div class="news-card-body"><h3>${n.title}</h3><p>${n.desc}</p><div class="news-card-date">${n.date}</div></div>`;
-    g.appendChild(c);
+
+function renderNews(filter = 'todos') {
+  const g = $('newsGrid');
+  if (!g) return;
+  g.innerHTML = '';
+  const items = newsData.filter(n => n.cat.includes(filter));
+  items.forEach((n, i) => {
+    const card = document.createElement('article');
+    card.className = 'news-card animate-in';
+    card.style.animationDelay = `${i * 0.08}s`;
+    const badgeClass = n.badgeClass ? `news-badge ${n.badgeClass}` : 'news-badge';
+    card.innerHTML = `
+      <div class="news-card-img">
+        <img src="${n.img}" alt="" loading="lazy">
+        <span class="${badgeClass}">${n.badge}</span>
+      </div>
+      <div class="news-card-body">
+        <h3>${n.title}</h3>
+        <p>${n.desc}</p>
+        <div class="news-card-date">${n.date}</div>
+      </div>`;
+    g.appendChild(card);
   });
 }
 
-// ===== TROPHIES =====
-const tData=[{n:'Liga Alemana',c:34},{n:'Copa DFB',c:20},{n:'Liga de Campeones',c:6},{n:'Supercopa Alemana',c:12},{n:'Copa de la Liga',c:6},{n:'Copa de la UEFA',c:1},{n:'Recopa de Europa',c:1},{n:'Copa Intercontinental',c:2},{n:'Mundial de Clubes',c:2},{n:'Supercopa UEFA',c:2}];
-function renderTrophies(){
-  const g=document.getElementById('trophiesGrid');
-  tData.forEach(t=>{const e=document.createElement('div');e.className='trophy-item';e.innerHTML=`<div style="font-size:36px;margin-bottom:8px">🏆</div><div class="trophy-name">${t.n}</div><div class="trophy-count" data-target="${t.c}">0</div>`;g.appendChild(e)});
+/* ---------- Trophies ---------- */
+const trophyData = [
+  { n:'Liga Doméstica', c:34 },
+  { n:'Copa Nacional', c:20 },
+  { n:'Liga de Campeones', c:6 },
+  { n:'Supercopa Nacional', c:12 },
+  { n:'Copa de la Liga', c:6 },
+  { n:'Copa de la UEFA', c:1 },
+  { n:'Recopa de Europa', c:1 },
+  { n:'Copa Intercontinental', c:2 },
+  { n:'Mundial de Clubes', c:2 },
+  { n:'Supercopa UEFA', c:2 }
+];
+
+function renderTrophies() {
+  const g = $('trophiesGrid');
+  if (!g) return;
+  trophyData.forEach(t => {
+    const el = document.createElement('div');
+    el.className = 'trophy-item';
+    el.innerHTML = `
+      <div style="font-size:36px;margin-bottom:8px" aria-hidden="true">🏆</div>
+      <div class="trophy-name">${t.n}</div>
+      <div class="trophy-count" data-target="${t.c}">0</div>`;
+    g.appendChild(el);
+  });
 }
 
-// ===== TABS =====
-document.getElementById('newsTabs').addEventListener('click',e=>{if(!e.target.classList.contains('news-tab'))return;document.querySelectorAll('.news-tab').forEach(t=>t.classList.remove('active'));e.target.classList.add('active');renderNews(e.target.dataset.tab)});
+/* ---------- Tabs ---------- */
+document.getElementById('newsTabs')?.addEventListener('click', e => {
+  const btn = e.target.closest('.news-tab');
+  if (!btn) return;
+  document.querySelectorAll('.news-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  renderNews(btn.dataset.tab);
+});
 
-// ===== HERO CAROUSEL =====
-let cs=0;const ts=4;let ai;
-function goToSlide(n){cs=n;document.getElementById('heroTrack').style.transform=`translateX(-${n*100}%)`;document.querySelectorAll('.hero-dot').forEach((d,i)=>d.classList.toggle('active',i===n));document.querySelectorAll('.hero-slide').forEach((s,i)=>s.classList.toggle('active',i===n));resetAP()}
-function changeSlide(d){let n=cs+d;if(n<0)n=ts-1;if(n>=ts)n=0;goToSlide(n)}
-function startAP(){ai=setInterval(()=>changeSlide(1),5000)}
-function resetAP(){clearInterval(ai);startAP()}
-function toggleMobileNav(){document.getElementById('mobileNav').classList.toggle('open')}
+/* ---------- Hero carousel ---------- */
+let currentSlide = 0;
+const TOTAL_SLIDES = 4;
+let autoplayInterval;
 
-// ===== SCROLL =====
-window.addEventListener('scroll',()=>{document.getElementById('scrollTop').classList.toggle('visible',window.scrollY>400);document.getElementById('header').style.boxShadow=window.scrollY>100?'0 4px 20px rgba(0,0,0,0.4)':'none'});
-
-// ===== NEWSLETTER =====
-function subscribeNewsletter(){const m=document.getElementById('newsletterMsg');m.textContent='¡Gracias por suscribirte!';m.style.display='block';setTimeout(()=>m.style.display='none',4000)}
-
-// ===== COUNTER ANIM =====
-function animC(){const o=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){const el=e.target;const t=+el.dataset.target;let c=0;const s=Math.max(1,Math.floor(t/30));const ti=setInterval(()=>{c+=s;if(c>=t){c=t;clearInterval(ti)}el.textContent=c},40);o.unobserve(el)}})},{threshold:.5});document.querySelectorAll('.trophy-count').forEach(c=>o.observe(c))}
-
-// ===== SWIPE =====
-let tx=0;document.querySelector('.hero').addEventListener('touchstart',e=>{tx=e.changedTouches[0].screenX},{passive:true});
-document.querySelector('.hero').addEventListener('touchend',e=>{const d=e.changedTouches[0].screenX-tx;if(Math.abs(d)>50)changeSlide(d<0?1:-1)},{passive:true});
-
-// ===== TICKER CARDS CLICK + AUTO-CYCLE =====
-document.querySelectorAll('.ticker-card').forEach((c,i)=>{c.addEventListener('click',()=>{document.querySelectorAll('.ticker-card').forEach(x=>x.classList.remove('active-ticker'));c.classList.add('active-ticker');stopTickerAuto();goToSlide(i)})});
-let tickerIdx=0,tickerTimer=null;
-function startTickerAuto(){
-  tickerTimer=setInterval(()=>{
-    const tc=document.querySelectorAll('.ticker-card');
-    if(!tc.length)return;
-    tc.forEach(x=>x.classList.remove('active-ticker'));
-    tickerIdx=(tickerIdx+1)%tc.length;
-    tc[tickerIdx].classList.add('active-ticker');
-  },3500);
+function goToSlide(n) {
+  currentSlide = n;
+  $('heroTrack').style.transform = `translateX(-${n * 100}%)`;
+  document.querySelectorAll('.hero-dot').forEach((d, i) => d.classList.toggle('active', i === n));
+  document.querySelectorAll('.hero-slide').forEach((s, i) => s.classList.toggle('active', i === n));
+  resetAutoplay();
 }
-function stopTickerAuto(){if(tickerTimer){clearInterval(tickerTimer);tickerTimer=null}}
+function changeSlide(dir) {
+  let n = currentSlide + dir;
+  if (n < 0) n = TOTAL_SLIDES - 1;
+  if (n >= TOTAL_SLIDES) n = 0;
+  goToSlide(n);
+}
+function startAutoplay() { autoplayInterval = setInterval(() => changeSlide(1), 5000); }
+function resetAutoplay() { clearInterval(autoplayInterval); startAutoplay(); }
+function toggleMobileNav() { document.getElementById('mobileNav').classList.toggle('open'); }
 
-// Match cards: rotate the blue "next" highlight between them
-let matchIdx=1,matchTimer=null;
-function startMatchAuto(){
-  matchTimer=setInterval(()=>{
-    const mc=document.querySelectorAll('.match-card');
-    if(!mc.length)return;
-    mc.forEach(x=>x.classList.remove('next'));
-    matchIdx=(matchIdx+1)%mc.length;
-    mc[matchIdx].classList.add('next');
-  },4500);
+/* ---------- Scroll behaviour ---------- */
+window.addEventListener('scroll', () => {
+  const st = $('scrollTop');
+  if (st) st.classList.toggle('visible', window.scrollY > 400);
+  const h = $('header');
+  if (h) h.style.boxShadow = window.scrollY > 100 ? '0 4px 20px rgba(0,0,0,0.4)' : 'none';
+});
+
+/* ---------- Newsletter ---------- */
+function subscribeNewsletter() {
+  const m = $('newsletterMsg');
+  if (!m) return;
+  m.textContent = '¡Gracias por suscribirte!';
+  m.style.display = 'block';
+  setTimeout(() => m.style.display = 'none', 4000);
 }
 
-// ===== INIT =====
-document.addEventListener('DOMContentLoaded',()=>{renderNews();renderTrophies();startAP();setTimeout(animC,500);startTickerAuto();startMatchAuto()});
+/* ---------- Counter animation on scroll ---------- */
+function animateCounters() {
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (!e.isIntersecting) return;
+      const el = e.target;
+      const target = Number(el.dataset.target);
+      let current = 0;
+      const step = Math.max(1, Math.floor(target / 30));
+      const ti = setInterval(() => {
+        current += step;
+        if (current >= target) { current = target; clearInterval(ti); }
+        el.textContent = current;
+      }, 40);
+      obs.unobserve(el);
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('.trophy-count').forEach(c => obs.observe(c));
+}
+
+/* ---------- Swipe (touch) ---------- */
+let touchStartX = 0;
+const heroEl = document.querySelector('.hero');
+heroEl?.addEventListener('touchstart', e => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
+heroEl?.addEventListener('touchend',   e => {
+  const d = e.changedTouches[0].screenX - touchStartX;
+  if (Math.abs(d) > 50) changeSlide(d < 0 ? 1 : -1);
+}, { passive: true });
+
+/* ---------- Ticker cards auto-cycle ---------- */
+document.querySelectorAll('.ticker-card').forEach((c, i) => {
+  c.addEventListener('click', () => {
+    document.querySelectorAll('.ticker-card').forEach(x => x.classList.remove('active-ticker'));
+    c.classList.add('active-ticker');
+    stopTickerAuto();
+    goToSlide(i);
+  });
+});
+let tickerIdx = 0, tickerTimer = null;
+function startTickerAuto() {
+  tickerTimer = setInterval(() => {
+    const cards = document.querySelectorAll('.ticker-card');
+    if (!cards.length) return;
+    cards.forEach(x => x.classList.remove('active-ticker'));
+    tickerIdx = (tickerIdx + 1) % cards.length;
+    cards[tickerIdx].classList.add('active-ticker');
+  }, 3500);
+}
+function stopTickerAuto() { if (tickerTimer) { clearInterval(tickerTimer); tickerTimer = null; } }
+
+/* ---------- Match next-card cycle ---------- */
+let matchIdx = 1, matchTimer = null;
+function startMatchAuto() {
+  matchTimer = setInterval(() => {
+    const cards = document.querySelectorAll('.match-card');
+    if (!cards.length) return;
+    cards.forEach(x => x.classList.remove('next'));
+    matchIdx = (matchIdx + 1) % cards.length;
+    cards[matchIdx].classList.add('next');
+  }, 4500);
+}
+
+/* ---------- Init ---------- */
+document.addEventListener('DOMContentLoaded', () => {
+  renderNews();
+  renderTrophies();
+  startAutoplay();
+  setTimeout(animateCounters, 500);
+  startTickerAuto();
+  startMatchAuto();
+});
 </script>
 </body>
 </html>
